@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Don&#39;t talk! Show me the code.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="题目描述 加一 eg:$[1,2,3]$末尾加一变成$[1,2,4]$,$[9]$加一变成$[1,0]$ 个人感受emmm有点石乐志，写代码还是只愿意去想，而不愿意去写，这是很大的问题，希望之后改变吧，这道题虽然简单，但也暴露了我的问题，于是一定记下，防止以后再发生 一个循环，在原来数组的基础上加1，如果$dig[i]\% 10&#x3D;&#x3D;0$表示有进位，就再向前加，否则返回，如果全部的位数都有加，那么就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode-66">
+<meta property="og:url" content="http://yoursite.com/2020/07/22/leetcode-66/index.html">
 <meta property="og:site_name" content="Cornelia">
-<meta property="og:description" content="Don&#39;t talk! Show me the code.">
+<meta property="og:description" content="题目描述 加一 eg:$[1,2,3]$末尾加一变成$[1,2,4]$,$[9]$加一变成$[1,0]$ 个人感受emmm有点石乐志，写代码还是只愿意去想，而不愿意去写，这是很大的问题，希望之后改变吧，这道题虽然简单，但也暴露了我的问题，于是一定记下，防止以后再发生 一个循环，在原来数组的基础上加1，如果$dig[i]\% 10&#x3D;&#x3D;0$表示有进位，就再向前加，否则返回，如果全部的位数都有加，那么就">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-18T06:03:59.000Z">
-<meta property="article:modified_time" content="2020-07-18T06:05:58.978Z">
+<meta property="article:published_time" content="2020-07-22T00:51:06.000Z">
+<meta property="article:modified_time" content="2020-07-22T00:56:26.513Z">
 <meta property="article:author" content="Peter">
+<meta property="article:tag" content="code">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/categories/">
+<link rel="canonical" href="http://yoursite.com/2020/07/22/leetcode-66/">
 
 
 <script id="page-configurations">
@@ -40,13 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>categories | Cornelia
-</title>
+  <title>leetcode-66 | Cornelia</title>
   
 
 
@@ -168,51 +168,104 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/22/leetcode-66/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode-66
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2020-07-22 08:51:06 / 修改时间：08:56:26" itemprop="dateCreated datePublished" datetime="2020-07-22T08:51:06+08:00">2020-07-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><ul>
+<li>加一 eg:$[1,2,3]$末尾加一变成$[1,2,4]$,$[9]$加一变成$[1,0]$</li>
+<li>个人感受<br>emmm有点石乐志，写代码还是只愿意去想，而不愿意去写，这是很大的问题，希望之后改变吧，这道题虽然简单，但也暴露了我的问题，于是一定记下，防止以后再发生</li>
+<li>一个循环，在原来数组的基础上加1，如果$dig[i]\% 10==0$表示有进位，就再向前加，否则返回，如果全部的位数都有加，那么就在首部添加一个1,(你看，这么简单的思路，就是不想去写)</li>
+<li>code<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CPP:</span><br><span class="line">for(int i&#x3D;digits.size()-1;i&gt;&#x3D;0;i--)&#123;</span><br><span class="line">            digits[i]++;</span><br><span class="line">            digits[i]&#x3D;digits[i]%10;</span><br><span class="line">            if(digits[i]!&#x3D;0) return digits;</span><br><span class="line">        &#125;</span><br><span class="line">        digits.insert(digits.begin(),1);</span><br><span class="line">        return digits;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/code/" rel="tag"># code</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/" rel="prev" title="不基于模型的预测">
+      <i class="fa fa-chevron-left"></i> 不基于模型的预测
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 3 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Reinforcement-Learning/">Reinforcement Learning</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/daily-life/">daily life</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/leetcode/">leetcode</a><span class="category-list-count">3</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -263,6 +316,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -443,6 +497,59 @@ $(document).ready(function() {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
