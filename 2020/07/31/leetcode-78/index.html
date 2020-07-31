@@ -20,23 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="有模型和无模型在这之前的强化学习问题，均是基于马尔科夫链的预测和策略选择，而$MDP$在现实生活之中不那么容易通过建模，把实际的问题建立成$MDP$，一些情况下利用函数去拟合具体的问题显得格外困难，于是就有了无模型的预测 MC学习我们知道在一个问题之中，总是有一个基于特定策略$\pi$的一个状态序列:$S_1,A_1,R_2,S_2,A_2……S_t,A_t,R_{t+1}…..S_k$~$\p">
+  <meta name="description" content="题目描述给定一个数组$[1,2,3]$，求出他的不重复的子集 回溯算法典型的树的结构，那么我们回顾一下回溯算法的模型1234567891011void backtrack(路径，选择列表)&amp;#123;    if 满足终止条件&amp;#123;        res.push_back(路径)          return;         &amp;#125;    for(选择:选择列表)&amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不基于模型的预测">
-<meta property="og:url" content="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/index.html">
+<meta property="og:title" content="leetcode-78">
+<meta property="og:url" content="http://yoursite.com/2020/07/31/leetcode-78/index.html">
 <meta property="og:site_name" content="Cornelia">
-<meta property="og:description" content="有模型和无模型在这之前的强化学习问题，均是基于马尔科夫链的预测和策略选择，而$MDP$在现实生活之中不那么容易通过建模，把实际的问题建立成$MDP$，一些情况下利用函数去拟合具体的问题显得格外困难，于是就有了无模型的预测 MC学习我们知道在一个问题之中，总是有一个基于特定策略$\pi$的一个状态序列:$S_1,A_1,R_2,S_2,A_2……S_t,A_t,R_{t+1}…..S_k$~$\p">
+<meta property="og:description" content="题目描述给定一个数组$[1,2,3]$，求出他的不重复的子集 回溯算法典型的树的结构，那么我们回顾一下回溯算法的模型1234567891011void backtrack(路径，选择列表)&amp;#123;    if 满足终止条件&amp;#123;        res.push_back(路径)          return;         &amp;#125;    for(选择:选择列表)&amp;#123;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-1.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-3.png">
-<meta property="article:published_time" content="2020-07-21T07:06:20.000Z">
-<meta property="article:modified_time" content="2020-07-21T07:51:10.755Z">
+<meta property="og:image" content="http://yoursite.com/2020/07/31/leetcode-78/20200731-1.png">
+<meta property="article:published_time" content="2020-07-31T01:35:59.000Z">
+<meta property="article:modified_time" content="2020-07-31T01:56:32.516Z">
 <meta property="article:author" content="Peter">
-<meta property="article:tag" content="rl">
+<meta property="article:tag" content="code">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/31/leetcode-78/20200731-1.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/">
+<link rel="canonical" href="http://yoursite.com/2020/07/31/leetcode-78/">
 
 
 <script id="page-configurations">
@@ -49,7 +48,7 @@
   };
 </script>
 
-  <title>不基于模型的预测 | Cornelia</title>
+  <title>leetcode-78 | Cornelia</title>
   
 
 
@@ -179,7 +178,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/31/leetcode-78/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -192,7 +191,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          不基于模型的预测
+          leetcode-78
         </h1>
 
         <div class="post-meta">
@@ -203,7 +202,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-07-21 15:06:20 / 修改时间：15:51:10" itemprop="dateCreated datePublished" datetime="2020-07-21T15:06:20+08:00">2020-07-21</time>
+              <time title="创建时间：2020-07-31 09:35:59 / 修改时间：09:56:32" itemprop="dateCreated datePublished" datetime="2020-07-31T09:35:59+08:00">2020-07-31</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -211,7 +210,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reinforcement-Learning/" itemprop="url" rel="index"><span itemprop="name">Reinforcement Learning</span></a>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
                 </span>
             </span>
 
@@ -233,14 +232,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li>有模型和无模型<br>在这之前的强化学习问题，均是基于马尔科夫链的预测和策略选择，而$MDP$在现实生活之中不那么容易通过建模，把实际的问题建立成$MDP$，一些情况下利用函数去拟合具体的问题显得格外困难，于是就有了无模型的预测</li>
-<li>MC学习<br>我们知道在一个问题之中，总是有一个基于特定策略$\pi$的一个状态序列:$S_1,A_1,R_2,S_2,A_2……S_t,A_t,R_{t+1}…..S_k$~$\pi$ 在t时刻的收获可以表示为<script type="math/tex; mode=display">G_t=R_{t+1}+\gamma R_{t+2}+...+\gamma ^{T-1}R_T</script>所以就有在某一状态s的价值为:<script type="math/tex; mode=display">V_{\pi}(s)=E_{\pi}[G_t|S_t=s]</script>上一节之中，通过一个迭代式更新价值函数，在$MDP$的情况下，有着完整的状态转移矩阵，所以更新时候可以借助贝尔曼方程，结合贪婪的策略对既定策略进行修正。而在无模型的情况下，我们不知道状态转移矩阵，并且也存在着某一状态被多次访问的问题，如何更新价值函数就显得有点棘手。<br>但我们观察上面的两个公式，一个是收获，一个是价值，价值是收获的期望，是一种意义上的平均，那么我们可以利用平均的思想，对价值进行更新，比如，当他再次访问状态$s$的时候，会另外产生一个收获，而此刻的状态$s$，已经有了一个价值，所以通过两者的差，对价值进行修正。设$N(S_t)$表示访问状态$S_t$的次数，所以更新公式为<script type="math/tex">N(S_t)<-N(S_t)+1</script><script type="math/tex; mode=display">V(S_t)<-V(S_t)+\frac{1} {N(S_t)} (G_t-V(S_t)</script></li>
-<li>TD 学习<br>将$MC$学习中的$G_t$展开，得到如下式子<script type="math/tex; mode=display">V(S_t)<-V(S_t)+\alpha (R_{t+1}+\gamma V(S_{t+1})-V(S_t))</script>这就是$TD$学习，是不是很简单，hhhhhh,其中$R_{t+1}+\gamma V(S_{t+1})$称为TD目标，$R_{t+1}+\gamma V(S_{t+1})-V(S_t)$称为TD误差，那么你是否有着疑问，这东西和$MC$有啥区别？这当然有区别了，你看$G_t$，我不展开的话，他表示的是收集整个序列的后续情况来更新，这难免在时间上会更长，但是他更新时候会一早就知道问题中的最终结果，而你把他展开，表示的就是你只关心下一个状态$S_{t+1}$，文艺点的话讲就是，我只关心我目前所处的位置和下一个位置，对于最终问题的结果，我先算来放在那，等我走的更远了，我再更新他，最终和$MC$方法得到的结果均是一样的，就像下面的图所示一样的<img src="/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-1.png" class title="MC深层采样">
-</li>
-<li>n步TD学习<br>你看我们知道MC是深层采样，意味着我会看后面的很多步，上面说的TD只看一步，那么我可不可以往后多看几步呢？如果我往后看无穷多步呢？这是不是意味着，当往后看的越多，TD方法越来月接近MC？<br><img src="/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-3.png" class title="n-步预测">所以我们能很快的得到n步情况下的更新公式<script type="math/tex; mode=display">V(S_t)<-V(S_t)+\alpha  (G_t^{n}-V(S_t)</script>那么这也有什么意义呢？在我看来，这样做得到的结果更接近正确答案，相比较$MC$方法，时间会更短。</li>
-<li>reference 《叶强-强化学习笔记》</li>
-</ul>
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个数组$[1,2,3]$，求出他的不重复的子集</p>
+<h1 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h1><p>典型的树的结构，那么我们回顾一下回溯算法的模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void backtrack(路径，选择列表)&#123;</span><br><span class="line">    if 满足终止条件&#123;</span><br><span class="line">        res.push_back(路径)  </span><br><span class="line">        return;     </span><br><span class="line">    &#125;</span><br><span class="line">    for(选择:选择列表)&#123;</span><br><span class="line">        做选择  &#x2F;&#x2F;track.push_back</span><br><span class="line">        backtrack(路径，选择列表);</span><br><span class="line">        撤销选择</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>此时的想法就是，如何才能求得每一个子集，并且在求子集的过程之中，没有明显的终止条件，那么如何通过中间路径得到最后的结果，此时此刻我们就需要理解一下递归调用的情况了，递归是怎么进行运行的，这个问题一解决，就知道如何写代码了。你看递归调用的情况，开始递归调用，就跳到该函数的开头，然后再进行for循环，所以，如何求最终结果的代码，也就显而易见了，我们看一棵树。<br><img src="/2020/07/31/leetcode-78/20200731-1.png" class title="image1"><br>试想，如何才能得到按照顺序得到所有的子集呢？这是不是就是树的前序遍历？这样，问题就顺势解决了。</p>
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; res;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;int&gt; track;</span><br><span class="line">        backtrack(nums,0,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    void backtrack(vector&lt;int&gt;&amp; nums,int start,vector&lt;int&gt;&amp;track)&#123;</span><br><span class="line">        &#x2F;&#x2F;加入路径</span><br><span class="line">        res.push_back(track);</span><br><span class="line">        for(int i&#x3D;start;i&lt;nums.size();i++)&#123;</span><br><span class="line">            &#x2F;&#x2F;选择</span><br><span class="line">            track.push_back(nums[i]);</span><br><span class="line">            &#x2F;&#x2F;回溯</span><br><span class="line">            backtrack(nums,i+1,track);</span><br><span class="line">            &#x2F;&#x2F;撤销选择</span><br><span class="line">            track.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -250,7 +244,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/rl/" rel="tag"># rl</a>
+              <a href="/tags/code/" rel="tag"># code</a>
           </div>
 
         
@@ -259,13 +253,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/" rel="prev" title="利用动态规划找寻最优策略">
-      <i class="fa fa-chevron-left"></i> 利用动态规划找寻最优策略
+    <a href="/2020/07/30/leetcode-77/" rel="prev" title="leetcode-77">
+      <i class="fa fa-chevron-left"></i> leetcode-77
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/07/22/leetcode-66/" rel="next" title="leetcode-66">
-      leetcode-66 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -324,6 +315,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回溯算法"><span class="nav-number">2.</span> <span class="nav-text">回溯算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#code"><span class="nav-number">3.</span> <span class="nav-text">code</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
