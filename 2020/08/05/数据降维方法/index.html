@@ -20,25 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="马尔科夫过程中的一些变量$S$:有限的状态集合$A$:有限的动作集合$P$:集合基于行为的状态转移概率矩阵: $P_{ss’}^a&#x3D;E[R_{t+1}|S_t&#x3D;s,A_t&#x3D;a]$$R$:基于状态和行为的奖励函数: $R^a_s&#x3D;E[R_{t+1}|S_t&#x3D;s,A_t&#x3D;a]$$\gamma$:衰减因子,$\gamma\in[0,1]$ 马尔科夫链和马尔科夫过程在一个时序过程之中，从某状态采取概率为">
+  <meta name="description" content="PCA(主成分分析)(1)考虑如何用一个超平面区分数据，既然需要很好的区分数据，那么这个超平面应该具有   最大可分性：样本点在这个超平面上的投影应该尽可能地分开 最近重构性：样本到这个超平面的距离足够近    (2)考虑一个$n$维的向量x，首先对数据x进行中心化的处理，所以有$\sum X_i&#x3D;0$,已知投影变换的公式为$Y&#x3D;\omega X$,对x进行投影变换，变换到新的超平面的时候的坐标为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="马尔科夫过程">
-<meta property="og:url" content="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:title" content="数据降维方法">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Cornelia">
-<meta property="og:description" content="马尔科夫过程中的一些变量$S$:有限的状态集合$A$:有限的动作集合$P$:集合基于行为的状态转移概率矩阵: $P_{ss’}^a&#x3D;E[R_{t+1}|S_t&#x3D;s,A_t&#x3D;a]$$R$:基于状态和行为的奖励函数: $R^a_s&#x3D;E[R_{t+1}|S_t&#x3D;s,A_t&#x3D;a]$$\gamma$:衰减因子,$\gamma\in[0,1]$ 马尔科夫链和马尔科夫过程在一个时序过程之中，从某状态采取概率为">
+<meta property="og:description" content="PCA(主成分分析)(1)考虑如何用一个超平面区分数据，既然需要很好的区分数据，那么这个超平面应该具有   最大可分性：样本点在这个超平面上的投影应该尽可能地分开 最近重构性：样本到这个超平面的距离足够近    (2)考虑一个$n$维的向量x，首先对数据x进行中心化的处理，所以有$\sum X_i&#x3D;0$,已知投影变换的公式为$Y&#x3D;\omega X$,对x进行投影变换，变换到新的超平面的时候的坐标为">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-1.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-4.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-2.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-3.png">
-<meta property="article:published_time" content="2020-07-19T11:17:14.000Z">
-<meta property="article:modified_time" content="2020-07-20T02:35:32.319Z">
+<meta property="og:image" content="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-1.png">
+<meta property="og:image" content="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-2.png">
+<meta property="article:published_time" content="2020-08-05T06:43:55.000Z">
+<meta property="article:modified_time" content="2020-08-06T07:51:49.697Z">
 <meta property="article:author" content="Peter">
-<meta property="article:tag" content="rl">
+<meta property="article:tag" content="data">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-1.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/">
+<link rel="canonical" href="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -51,7 +49,7 @@
   };
 </script>
 
-  <title>马尔科夫过程 | Cornelia</title>
+  <title>数据降维方法 | Cornelia</title>
   
 
 
@@ -181,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -194,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          马尔科夫过程
+          数据降维方法
         </h1>
 
         <div class="post-meta">
@@ -204,14 +202,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-19 19:17:14" itemprop="dateCreated datePublished" datetime="2020-07-19T19:17:14+08:00">2020-07-19</time>
+              <time title="创建时间：2020-08-05 14:43:55" itemprop="dateCreated datePublished" datetime="2020-08-05T14:43:55+08:00">2020-08-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-20 10:35:32" itemprop="dateModified" datetime="2020-07-20T10:35:32+08:00">2020-07-20</time>
+                <time title="修改时间：2020-08-06 15:51:49" itemprop="dateModified" datetime="2020-08-06T15:51:49+08:00">2020-08-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -219,7 +217,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reinforcement-Learning/" itemprop="url" rel="index"><span itemprop="name">Reinforcement Learning</span></a>
+                  <a href="/categories/Kaggle/" itemprop="url" rel="index"><span itemprop="name">Kaggle</span></a>
                 </span>
             </span>
 
@@ -241,15 +239,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li>马尔科夫过程中的一些变量<br>$S$:有限的状态集合<br>$A$:有限的动作集合<br>$P$:集合基于行为的状态转移概率矩阵: $P_{ss’}^a=E[R_{t+1}|S_t=s,A_t=a]$<br>$R$:基于状态和行为的奖励函数: $R^a_s=E[R_{t+1}|S_t=s,A_t=a]$<br>$\gamma$:衰减因子,$\gamma\in[0,1]$</li>
-<li>马尔科夫链和马尔科夫过程<br>在一个时序过程之中，从某状态采取概率为P的动作，转移到下一个状态，同时产生一个回报R。<br>eg:<img src="/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-1.png" class title="马尔科夫链和状态转移"></li>
-<li>价值函数和行为价值函数<br>(1)价值函数：  啥<br>$v(s)=E[G_t|S_t=s]$<br>价值函数可以通过期望的定义展开<img src="/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-4.png" class title="价值函数的展开">   
-贝尔曼方程:<br>$v(s)=R_s+\gamma_{s’ \in S}\sum P_{ss’}V(s’) $<img src="/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-2.png" class title="贝尔曼方程">  
-个人理解：贝尔曼方程表示在此刻的状态S下的价值函数值为此刻的回报加上往后所有的状态的价值函数<br>(2)行为价值函数<br>$q_\pi(s,a)=R_s^a+\gamma \sum P_{ss’}^av_\pi(s’) $<br>从函数表达式的形式来看就是在状态s下选择动作a之后得到的行为价值函数，由此可见如果对动作a求一个和那么就是价值函数<img src="/2020/07/19/%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E8%BF%87%E7%A8%8B/20200719-3.png" class title="行为价值函数和价值函数的关系">  </li>
-<li>动作的选择<br>贪婪策略:由于要最大化价值策略函数，所以在选择策略的时候就要根据贪婪策略<br>$\pi(a|s)=1\ if\ a=argmax_{a\in A}q(s,a)<br>\ \ \ else\ 0  $  </li>
-<li>reference: 《叶强-强化学习笔记》</li>
-</ul>
+        <h1 id="PCA-主成分分析"><a href="#PCA-主成分分析" class="headerlink" title="PCA(主成分分析)"></a>PCA(主成分分析)</h1><p>(1)考虑如何用一个超平面区分数据，既然需要很好的区分数据，那么这个超平面应该具有 </p>
+<ol>
+<li>最大可分性：样本点在这个超平面上的投影应该尽可能地分开</li>
+<li>最近重构性：样本到这个超平面的距离足够近  </li>
+</ol>
+<p>(2)考虑一个$n$维的向量<strong>x</strong>，首先对数据<strong>x</strong>进行中心化的处理，所以有$\sum X_i=0$,已知投影变换的公式为$Y=\omega X$,对<strong>x</strong>进行投影变换，变换到新的超平面的时候的坐标为$\{\omega_1,\omega_2…\omega_d\}$，注意此时此刻的坐标是正交的，而且是标准正交基，所以就有$||\omega_i||_2=1,\omega_i^T\omega_j=0(i≠j)$，如果我们丢掉一下坐标，那么数据的维度就可以从$d$维，降低到$d’$维，其中在低维的坐标表示为$\{Z_1,Z_2…Z_{d’}\}$<br>(3) 既然已经按照要求得到了降低维度之后的坐标，那么如何才能满足最大可分性和最大重构性呢？考虑原来的样本点$x_i$和通过投影重构之后的坐标$x’_i$之间的距离，<script type="math/tex">\sum_{i=1}^m||\sum_{j=1}^{d'}z_{ij}\omega_j-x_i||_2^2=\sum_{i=1}^mz_i^Tz_i-2\sum_{i=1}^mz_i^TW^Tx_i+const</script>等价于<script type="math/tex">-tr(W^T(\sum_{i=1}^mx_ix_i^T)W)</script><br>回到之前对<strong>x</strong>进行去中心化，样本<strong>x</strong>均已经减去了各自的平均值，其中$\sum_{i=1}^mx_ix_i^T$是协方差矩阵，所以我们的优化目标就到了</p>
+<script type="math/tex; mode=display">min_W \ -tr(W^TXX^TW)</script><script type="math/tex; mode=display">s.t. W^TW=1</script><p>(插播)对于不了解协方差矩阵的，这东西很简单<br>根据协方差的计算公式为$\delta(x,y)=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)$，由此可见，两个数的协方差是这样定义的，那么当求解很多个数的协方差的时候，将结果放在一个向量组里面，或者是一个$n$维向量求协方差，就可以得到协方差矩阵</p>
+<p>仔细观察这个式子，你会发现，当我们优化完这个式子，就可以完美解决最大重构性和最大可分性的两个问题，看不出来？别急。<br>考查最大可分，意味着，所有的样本的尽可能的分开，所以优化目标为</p>
+<script type="math/tex; mode=display">max_W  \  \ tr(W^TXX^TW)</script><script type="math/tex; mode=display">s.t. W^TW=1</script><p>这个式子和上面的式子完全等价，所以现在的目标就是求解这个优化问题。(这不就是拉格朗日乘除法？就这？就这?)<br>写出拉格朗日的形式，所以有<script type="math/tex">XX^TW=\lambda W</script><br>我们只需要对协方差矩阵$XX^T$进行特征值分解，得到的特征值$\{\lambda_1,\lambda_2…\lambda_i\}$，取前$d’$个特征值，注意，此时的特征值，是按照从大到小的顺序排列的，所以这些特征值就构成了$\{\omega_1,\omega_2…\omega_{d’}\}$，这就是主成分分析的解了<br>(4)基于sklearn的PCA实现<br>我们来看sklearn里面的PCA函数模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.decomposition.PCA(n_components&#x3D;None, copy&#x3D;True, whiten&#x3D;False)</span><br></pre></td></tr></table></figure><br>n_components:表示PCA需要留下来的特征值的个数，就是最后你需要降低到哪个维度，就可以降低到你想到的维度<br>PCA的常用方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pca&#x3D;PCA(n_components&#x3D;n_components)</span><br><span class="line">newdata&#x3D;PCA.fit(x) # 将数据X丢进PCA进行训练，一般不用</span><br><span class="line">newdata&#x3D;PCA.fit_transform(X) #训练，并且返回降维之后的数据</span><br></pre></td></tr></table></figure><br>既然我们已经可以很顺利地降低维度，那么想想，该怎样来查看特征值表达数据集的程度呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pca.explained_variance_ratio_  #返回百分占比，根据特征值的顺序，返回得到的特征值能够表达的数据程度(百分比)</span><br></pre></td></tr></table></figure></p>
+<h1 id="LDA-线性判别分析"><a href="#LDA-线性判别分析" class="headerlink" title="LDA-线性判别分析"></a>LDA-线性判别分析</h1><p>上面提到的PCA是没有标签的，属于无监督的降维方法，那么如果在具体的问题中存在着标签呢？这就来到了监督的降维方法。先看一张图<br><img src="/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-1.png" class title="image1"><br>LDA的思想也是找到一个投影的方向，将数据进行投影，从而达到降维和分类的效果，再看一张图<br><img src="/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-2.png" class title="image2"><br>但情况并不是那么明朗，如果分的不好，就会有数据重叠的情况。由此，我们可以得到LDA的两个准则:<br>(1)最大化类间距离<br>(2)最小化类内距离<br>(由于推导有些麻烦，感兴趣可以在网上搜)<br>基于sklearn的实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lda&#x3D;LDA(n_components&#x3D;n_components)</span><br><span class="line"></span><br><span class="line">newdata&#x3D;lda.fit_transform(X,target) #训练，并且返回降维之后的数据，比pca多了标签的部分</span><br></pre></td></tr></table></figure></p>
 
     </div>
 
@@ -259,7 +258,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/rl/" rel="tag"># rl</a>
+              <a href="/tags/data/" rel="tag"># data</a>
           </div>
 
         
@@ -268,13 +267,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/07/19/leetcode-62/" rel="prev" title="leetcode-62">
-      <i class="fa fa-chevron-left"></i> leetcode-62
+    <a href="/2020/08/01/leetcode-79/" rel="prev" title="leetcode-79">
+      <i class="fa fa-chevron-left"></i> leetcode-79
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/07/20/leetcode-63/" rel="next" title="leetcode-63">
-      leetcode-63 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -333,6 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PCA-主成分分析"><span class="nav-number">1.</span> <span class="nav-text">PCA(主成分分析)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LDA-线性判别分析"><span class="nav-number">2.</span> <span class="nav-text">LDA-线性判别分析</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

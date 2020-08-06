@@ -172,6 +172,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">数据降维方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-05 14:43:55" itemprop="dateCreated datePublished" datetime="2020-08-05T14:43:55+08:00">2020-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-06 15:51:49" itemprop="dateModified" datetime="2020-08-06T15:51:49+08:00">2020-08-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kaggle/" itemprop="url" rel="index"><span itemprop="name">Kaggle</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="PCA-主成分分析"><a href="#PCA-主成分分析" class="headerlink" title="PCA(主成分分析)"></a>PCA(主成分分析)</h1><p>(1)考虑如何用一个超平面区分数据，既然需要很好的区分数据，那么这个超平面应该具有 </p>
+<ol>
+<li>最大可分性：样本点在这个超平面上的投影应该尽可能地分开</li>
+<li>最近重构性：样本到这个超平面的距离足够近  </li>
+</ol>
+<p>(2)考虑一个$n$维的向量<strong>x</strong>，首先对数据<strong>x</strong>进行中心化的处理，所以有$\sum X_i=0$,已知投影变换的公式为$Y=\omega X$,对<strong>x</strong>进行投影变换，变换到新的超平面的时候的坐标为$\{\omega_1,\omega_2…\omega_d\}$，注意此时此刻的坐标是正交的，而且是标准正交基，所以就有$||\omega_i||_2=1,\omega_i^T\omega_j=0(i≠j)$，如果我们丢掉一下坐标，那么数据的维度就可以从$d$维，降低到$d’$维，其中在低维的坐标表示为$\{Z_1,Z_2…Z_{d’}\}$<br>(3) 既然已经按照要求得到了降低维度之后的坐标，那么如何才能满足最大可分性和最大重构性呢？考虑原来的样本点$x_i$和通过投影重构之后的坐标$x’_i$之间的距离，<script type="math/tex">\sum_{i=1}^m||\sum_{j=1}^{d'}z_{ij}\omega_j-x_i||_2^2=\sum_{i=1}^mz_i^Tz_i-2\sum_{i=1}^mz_i^TW^Tx_i+const</script>等价于<script type="math/tex">-tr(W^T(\sum_{i=1}^mx_ix_i^T)W)</script><br>回到之前对<strong>x</strong>进行去中心化，样本<strong>x</strong>均已经减去了各自的平均值，其中$\sum_{i=1}^mx_ix_i^T$是协方差矩阵，所以我们的优化目标就到了</p>
+<script type="math/tex; mode=display">min_W \ -tr(W^TXX^TW)</script><script type="math/tex; mode=display">s.t. W^TW=1</script><p>(插播)对于不了解协方差矩阵的，这东西很简单<br>根据协方差的计算公式为$\delta(x,y)=\frac{1}{n-1}\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)$，由此可见，两个数的协方差是这样定义的，那么当求解很多个数的协方差的时候，将结果放在一个向量组里面，或者是一个$n$维向量求协方差，就可以得到协方差矩阵</p>
+<p>仔细观察这个式子，你会发现，当我们优化完这个式子，就可以完美解决最大重构性和最大可分性的两个问题，看不出来？别急。<br>考查最大可分，意味着，所有的样本的尽可能的分开，所以优化目标为</p>
+<script type="math/tex; mode=display">max_W  \  \ tr(W^TXX^TW)</script><script type="math/tex; mode=display">s.t. W^TW=1</script><p>这个式子和上面的式子完全等价，所以现在的目标就是求解这个优化问题。(这不就是拉格朗日乘除法？就这？就这?)<br>写出拉格朗日的形式，所以有<script type="math/tex">XX^TW=\lambda W</script><br>我们只需要对协方差矩阵$XX^T$进行特征值分解，得到的特征值$\{\lambda_1,\lambda_2…\lambda_i\}$，取前$d’$个特征值，注意，此时的特征值，是按照从大到小的顺序排列的，所以这些特征值就构成了$\{\omega_1,\omega_2…\omega_{d’}\}$，这就是主成分分析的解了<br>(4)基于sklearn的PCA实现<br>我们来看sklearn里面的PCA函数模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sklearn.decomposition.PCA(n_components&#x3D;None, copy&#x3D;True, whiten&#x3D;False)</span><br></pre></td></tr></table></figure><br>n_components:表示PCA需要留下来的特征值的个数，就是最后你需要降低到哪个维度，就可以降低到你想到的维度<br>PCA的常用方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pca&#x3D;PCA(n_components&#x3D;n_components)</span><br><span class="line">newdata&#x3D;PCA.fit(x) # 将数据X丢进PCA进行训练，一般不用</span><br><span class="line">newdata&#x3D;PCA.fit_transform(X) #训练，并且返回降维之后的数据</span><br></pre></td></tr></table></figure><br>既然我们已经可以很顺利地降低维度，那么想想，该怎样来查看特征值表达数据集的程度呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pca.explained_variance_ratio_  #返回百分占比，根据特征值的顺序，返回得到的特征值能够表达的数据程度(百分比)</span><br></pre></td></tr></table></figure></p>
+<h1 id="LDA-线性判别分析"><a href="#LDA-线性判别分析" class="headerlink" title="LDA-线性判别分析"></a>LDA-线性判别分析</h1><p>上面提到的PCA是没有标签的，属于无监督的降维方法，那么如果在具体的问题中存在着标签呢？这就来到了监督的降维方法。先看一张图<br><img src="/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-1.png" class title="image1"><br>LDA的思想也是找到一个投影的方向，将数据进行投影，从而达到降维和分类的效果，再看一张图<br><img src="/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/20200806-2.png" class title="image2"><br>但情况并不是那么明朗，如果分的不好，就会有数据重叠的情况。由此，我们可以得到LDA的两个准则:<br>(1)最大化类间距离<br>(2)最小化类内距离<br>(由于推导有些麻烦，感兴趣可以在网上搜)<br>基于sklearn的实现:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lda&#x3D;LDA(n_components&#x3D;n_components)</span><br><span class="line"></span><br><span class="line">newdata&#x3D;lda.fit_transform(X,target) #训练，并且返回降维之后的数据，比pca多了标签的部分</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/01/leetcode-79/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -822,81 +905,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/leetcode-63/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/20/leetcode-63/" class="post-title-link" itemprop="url">leetcode-63</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-20 10:19:45 / 修改时间：10:35:23" itemprop="dateCreated datePublished" datetime="2020-07-20T10:19:45+08:00">2020-07-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><ul>
-<li>机器人从起点出发去终点，其中有障碍物，障碍物用1表示，求不同路径数  <img src="/2020/07/20/leetcode-63/20200720-1.png" class title="image1"></li>
-<li>多了一个约束条件的动态规划<br>设$U(i,j)$表示此时此刻是否有障碍，有为0，无为1，有障碍表示不可达<br>设$f(i,j)$表示路径数，所以得出动态规划方程$f(i,j)=0\ if\ u(i,j)=0\ \ \ else\  f(i,j)=f(i-1,j)+f(i,j-1)$  </li>
-<li>滚动数组思想<br>利用一个一维数组存储需要变化的值,比如在斐波那契数列中，如果求第100个数，那么就会计算和保存100次，如果利用滚动数组，那么就只用三个单元，就可以动态变化，利用空间换时间的想法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for(int i &#x3D; 2; i &lt;&#x3D; n; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		Fib[0] &#x3D; Fib[1]; </span><br><span class="line">		Fib[1] &#x3D; Fib[2];</span><br><span class="line">		Fib[2] &#x3D; Fib[0] + Fib[1];</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></li>
-<li>在vector之中，利用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m&#x3D;vector.size()</span><br><span class="line">n&#x3D;vector[0].size()</span><br></pre></td></tr></table></figure>
-可以分别求得行和列</li>
-<li>通关代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int n &#x3D; obstacleGrid.size(), m &#x3D; obstacleGrid.at(0).size();</span><br><span class="line">       vector &lt;int&gt; d(m);</span><br><span class="line"></span><br><span class="line">       d[0] &#x3D; (obstacleGrid[0][0] &#x3D;&#x3D; 0);</span><br><span class="line">       for (int i &#x3D; 0; i &lt; n; ++i) &#123;</span><br><span class="line">           for (int j &#x3D; 0; j &lt; m; ++j) &#123;</span><br><span class="line">               if (obstacleGrid[i][j] &#x3D;&#x3D; 1) &#123;</span><br><span class="line">                   d[j] &#x3D; 0;</span><br><span class="line">                   continue;</span><br><span class="line">               &#125;</span><br><span class="line">               if (j - 1 &gt;&#x3D; 0 &amp;&amp; obstacleGrid[i][j - 1] &#x3D;&#x3D; 0) &#123;</span><br><span class="line">                   d[j] +&#x3D; d[j - 1];</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       return f.back();</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -968,20 +976,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
