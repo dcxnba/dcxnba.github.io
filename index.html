@@ -172,6 +172,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/11/%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/11/%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">编码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-11 19:52:21" itemprop="dateCreated datePublished" datetime="2020-08-11T19:52:21+08:00">2020-08-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-12 16:11:26" itemprop="dateModified" datetime="2020-08-12T16:11:26+08:00">2020-08-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kaggle/" itemprop="url" rel="index"><span itemprop="name">kaggle</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="one-hot"><a href="#one-hot" class="headerlink" title="one-hot"></a>one-hot</h1><p>我们来看一组很小的数据<br>[“male”, “female”]</p>
+<p>[“from Europe”, “from US”, “from Asia”]</p>
+<p>[“uses Firefox”, “uses Chrome”, “uses Safari”, “uses Internet Explorer”]<br>如果我们要将这些数据输入到电脑里面，我们该怎么做呢？一个想法就是编码编成001,010,011这样的形式，这样编码也是可以的，但是转念一想，这样的二进制的编码有着明确的顺序的含义在里面，这样的编码肯定是不足以体现数据的特征的，如果你要去找一个数据，那么就会存在数据都是按照一定的序列的，这明显是不具有一般性的。<br>我们来看一下一个例子：高，中，低，三个特征，如何来区分？我们用三位编码就可以实现。来看一下这个编码 001, 010 ,100,仔细一看，这个编码有着一个典型的优点，每一个编码有且仅有一位是1，其他位均是0，这样的造成的结果就是每一个编码都是独立的，而且并不在潜意识下存在顺序，同时这些编码又都是互斥的，所以又是稀疏的，把一个个特征转换成这样的编码，这样的编码就是one-hot编码，也叫独热编码。<br>one-hot编码的好处显而易见：（1）能让特征变得离散，特征之间又都是互斥的。（2）解决了分类器不好处理属性数据的问题。（3）在一定程度上起到了扩充特征的作用。<br>紧接着，我们来看sklearn的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import preprocessing</span><br><span class="line"></span><br><span class="line">enc &#x3D; preprocessing.OneHotEncoder()</span><br><span class="line"></span><br><span class="line">enc.fit([[0, 0, 3], [1, 1, 0], [0, 2, 1], [1, 0, 2]])</span><br><span class="line"></span><br><span class="line">enc.transform([[0, 1, 3]]).toarray()</span><br></pre></td></tr></table></figure><br>输出结果：</p>
+<p>array([[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]])</p>
+<p>Note: fit了4个数据3个特征，而transform了1个数据3个特征。第一个特征两种值(0: 10, 1: 01)，第二个特征三种值(0: 100, 1: 010, 2: 001)，第三个特征四种值(0: 1000, 1: 0100, 2: 0010, 3: 0001)。所以转换[0, 1, 3]为[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/%E6%95%B0%E6%8D%AE%E9%99%8D%E7%BB%B4%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -835,77 +913,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E9%99%88%E6%83%85%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/20/%E9%99%88%E6%83%85%E8%A1%A8/" class="post-title-link" itemprop="url">陈情表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-20 10:36:58 / 修改时间：14:08:51" itemprop="dateCreated datePublished" datetime="2020-07-20T10:36:58+08:00">2020-07-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/daily-life/" itemprop="url" rel="index"><span itemprop="name">daily life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="《陈情表》"><a href="#《陈情表》" class="headerlink" title="《陈情表》"></a>《陈情表》</h1><ul>
-<li>臣密言：臣以险衅，夙遭闵凶。生孩六月，慈父见背；行年四岁，舅夺母志。祖母刘悯臣孤弱，躬亲抚养。臣少多疾病，九岁不行，零丁孤苦，至于成立。既无伯叔，终鲜兄弟，门衰祚薄，晚有儿息。外无期功强近之亲，内无应门五尺之僮，茕茕孑立，形影相吊。而刘夙婴疾病，常在床蓐，臣侍汤药，未曾废离。<br>逮奉圣朝，沐浴清化。前太守臣逵察臣孝廉；后刺史臣荣举臣秀才。臣以供养无主，辞不赴命。诏书特下，拜臣郎中，寻蒙国恩，除臣洗马。猥以微贱，当侍东宫，非臣陨首所能上报。臣具以表闻，辞不就职。诏书切峻，责臣逋慢；郡县逼迫，催臣上道；州司临门，急于星火。臣欲奉诏奔驰，则刘病日笃，欲苟顺私情，则告诉不许。臣之进退，实为狼狈。<br>伏惟圣朝以孝治天下，凡在故老，犹蒙矜育，况臣孤苦，特为尤甚。且臣少仕伪朝，历职郎署，本图宦达，不矜名节。今臣亡国贱俘，至微至陋，过蒙拔擢，宠命优渥，岂敢盘桓，有所希冀！但以刘日薄西山，气息奄奄，人命危浅，朝不虑夕。臣无祖母，无以至今日，祖母无臣，无以终余年。母、孙二人，更相为命，是以区区不能废远。<br>臣密今年四十有四，祖母今年九十有六，是臣尽节于陛下之日长，报养刘之日短也。乌鸟私情，愿乞终养。臣之辛苦，非独蜀之人士及二州牧伯所见明知，皇天后土，实所共鉴。愿陛下矜悯愚诚，听臣微志，庶刘侥幸，保卒余年。臣生当陨首，死当结草。臣不胜犬马怖惧之情，谨拜表以闻。</li>
-<li>今日想起高中时候最喜欢的一篇文言文，所以就此重逢一下。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -977,20 +984,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
