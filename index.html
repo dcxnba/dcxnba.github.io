@@ -195,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-07 12:27:12 / 修改时间：16:10:29" itemprop="dateCreated datePublished" datetime="2020-09-07T12:27:12+08:00">2020-09-07</time>
+              <time title="创建时间：2020-09-07 12:27:12" itemprop="dateCreated datePublished" datetime="2020-09-07T12:27:12+08:00">2020-09-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-09 10:31:33" itemprop="dateModified" datetime="2020-09-09T10:31:33+08:00">2020-09-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -231,7 +237,7 @@
 通过比较我们发现，如果传送大量的数据，传送时间远大于连接建立的时间，那么电路交换的传输速率较快。报文交换和分组交换不需要预先分配传输带宽，在传送突发数据时可以提高整个网络的信道利用率，同时由于<strong>一个分组的长度肯定小于一个报文的长度</strong>，所以在传输时延上，分组交换时延更小，也具有很高的灵活性</li>
 </ul>
 <h2 id="计算机网络的类别"><a href="#计算机网络的类别" class="headerlink" title="计算机网络的类别"></a>计算机网络的类别</h2><ul>
-<li>按照网络的作用范围进行分类<br>(1) 广域网WAN(Wide Area Network)<br>(2) 域域网MAN(Metropolitan Area Network)<br>(3) 局域网LAN(Local Area Network)<br>(4) 个人区域网(Personal Area Network)<h3 id="计算机网络的性能"><a href="#计算机网络的性能" class="headerlink" title="计算机网络的性能"></a>计算机网络的性能</h3></li>
+<li>按照网络的作用范围进行分类<br>(1) 广域网WAN(Wide Area Network)<br>(2) 城域网MAN(Metropolitan Area Network)<br>(3) 局域网LAN(Local Area Network)<br>(4) 个人区域网(Personal Area Network)<h3 id="计算机网络的性能"><a href="#计算机网络的性能" class="headerlink" title="计算机网络的性能"></a>计算机网络的性能</h3></li>
 <li><p>计算机网络的性能指标<br>(1) <strong>速率</strong>：一个bit是一位，一个byte是8位，速率是指数据的传送速率<br>(2) <strong>带宽</strong>：单位时间内网络中的某信道所能通过的<strong>最高</strong>数据率<br>(3) <strong>吞吐量</strong>：单位时间内通过某个网络的实际的数据量<br>(4) <strong>时延</strong>：数据(一个报文或者一个分组)从网络(或链路)的一端传送到另一端所需的时间</p>
 <blockquote>
 <p>发送时延：主机或路由器发送数据帧所需要的时间(<strong>通过主机/路由器发送到网络中所消耗的时间</strong>) </p>
@@ -254,9 +260,12 @@
 </ul>
 <ul>
 <li>数据在各层之间的传递过程<img src="/2020/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/20200907-6.png" class title="传递过程">
-可以通过传递过程发现，在到达第二层(数据链路层)时候，控制信息被加上本层单元的首部和尾部，由于第一层(物理层)是比特流的传送，所以不会加上控制信息。而加上这些控制信息，在剥离这些控制信息的时候都是采取的栈的后进先出的结构。<h3 id="TCP-IP-结构"><a href="#TCP-IP-结构" class="headerlink" title="TCP/IP 结构"></a>TCP/IP 结构</h3><img src="/2020/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/20200907-7.png" class title="TCP&#x2F;IP协议族">
-由这张图不难看出IP协议在互联网的核心作用</li>
+可以通过传递过程发现，在到达第二层(数据链路层)时候，控制信息被加上本层单元的首部和尾部，由于第一层(物理层)是比特流的传送，所以不会加上控制信息。而加上这些控制信息，在剥离这些控制信息的时候都是采取的栈的后进先出的结构。<h3 id="协议，实体，服务"><a href="#协议，实体，服务" class="headerlink" title="协议，实体，服务"></a>协议，实体，服务</h3><img src="/2020/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/20200909-1.png" class title="相邻两层之间的关系"></li>
+<li>协议和服务是<strong>很不一样</strong>的，<br>(1)协议是<strong>水平</strong>的，协议是控制对等实体之间的通信的规则，服务是<strong>垂直</strong>的，服务是由下层向上层通过层间接口提供的，<br>(2)协议的实现保证了能够向上一层提供服务<br>(3)使用本层服务的实体只能看见服务而无法看见下面的协议，即下面的协议对于上面的实体是透明的。<br>(4)协议的实现保证了能够向上一层提供服务</li>
+<li>服务访问点<br>(1)相邻两层的实体进行交互的地方，称为服务访问点SAP(Service Access Point)<br>(2) OSI 把<strong>层与层</strong>之间交换的数据的单位称为服务数据单元SDU(Service Data Unit)<br>(3) PDU: OSI把对等层次之间传送的数据称为该层的协议数据单元PDU(Protocol Data Unit)，他可以和SDU不一样，多个SDU合成为一个PDU，也可以是一个SDU划分为几个PDU</li>
 </ul>
+<h3 id="TCP-IP-结构"><a href="#TCP-IP-结构" class="headerlink" title="TCP/IP 结构"></a>TCP/IP 结构</h3><img src="/2020/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/20200907-7.png" class title="TCP&#x2F;IP协议族">
+<p>由这张图不难看出IP协议在互联网的核心作用</p>
 
       
     </div>
