@@ -172,6 +172,131 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/" class="post-title-link" itemprop="url">物理层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-09 19:26:35 / 修改时间：20:31:06" itemprop="dateCreated datePublished" datetime="2020-09-09T19:26:35+08:00">2020-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>物理层的特性：机械特性，电气特性，功能特性，过程特性<h1 id="信道"><a href="#信道" class="headerlink" title="信道"></a>信道</h1></li>
+<li>三种方式<ul>
+<li>单通信道：只能有一个方向的通信而没有反方向的通信。eg:无线电广播或有线电广播。</li>
+<li>双向交替通信（半双工通信）：通信的双方都可以发送信息，但不能双方同时发送，也不能同时接收。eg:打电话，</li>
+<li>双向同时通信（全双工通信）：通信的双方可以同时发送和接收信息。（可以同时做同样的事情）</li>
+</ul>
+</li>
+<li><p>调制<br>由于基带信号中往往含有较多的低频成分，甚至有直流成分，而许多信道并不能传输这种低频分量或直流分量，所以必须对基带信号进行调制</p>
+<ul>
+<li><p>基带调制：仅仅对基带信号的波形进行变换。变换后的信号仍然是基带信号（将数字信号转换为另一种形式的数字信号，因此人们更愿意称为<strong>编码</strong>）</p>
+<pre><code>&gt;常见的编码：不归零制，归零制，曼彻斯特制，差分曼彻斯特制
+</code></pre></li>
+<li><p>带通调制：把基带信号的频率范围搬移到较高的频段，并转换为模拟信号。经过载波调制后的信号成为带通信号（即仅在一段频率范围内能够通过信道）</p>
+<pre><code>&gt;基本的带通调制方法：调幅，调频，调相
+</code></pre><h1 id="信道的极限容量"><a href="#信道的极限容量" class="headerlink" title="信道的极限容量"></a>信道的极限容量</h1></li>
+</ul>
+</li>
+<li>在任何信道中，码元传输的速率是有上限的，传输速率超过此上限，就会出现严重的码间串扰的问题，使接收端对码元的识别成为不可能</li>
+<li>信噪比<script type="math/tex; mode=display">信噪比=10 log_{10}(S/N)</script></li>
+<li>香农公式<script type="math/tex; mode=display">信道的极限信息传输速率C，C=Wlog_2(1+S/N)</script>通过香农公式告诉我们，只要信息传输速率低于信道的极限传输速率，就一定存在某种方法来实现无差错的传输<h1 id="物理层下面的传输媒体"><a href="#物理层下面的传输媒体" class="headerlink" title="物理层下面的传输媒体"></a>物理层下面的传输媒体</h1></li>
+<li>导引型传输媒体<ul>
+<li>双绞线：无屏蔽双绞线，屏蔽双绞线</li>
+<li>同轴电缆</li>
+<li>光缆：光线在光纤中传播时候，由于纤芯是<strong>高折射率</strong>的媒体，包层是<strong>低折射率</strong>的媒体，所有从高折射率到低折射率，容易发生全反射<h1 id="信道复用技术"><a href="#信道复用技术" class="headerlink" title="信道复用技术"></a>信道复用技术</h1></li>
+</ul>
+</li>
+<li>频分复用<ul>
+<li>所有用户在同样的时间占用不同不同的带宽资源</li>
+</ul>
+</li>
+<li>时分复用<ul>
+<li>所有用户是在不同的时间占用同样的频带宽度<img src="/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/20200909-1.png" class title="image1"></li>
+<li>需要强调的是，复用器和分用器都是同时出现，成对使用。同时，这种复用技术又存在着一定的浪费。<img src="/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/20200909-2.png" class title="image2"></li>
+</ul>
+</li>
+<li>统计时分复用STDM（Statistic TDM）<ul>
+<li>STDM是时分复用的一种改进，各用户有了数据就随时发往集中器的输入缓存，对没有缓存的数据就跳过去，当一个帧的数据放满了，就发送出去。因此，STDM不是固定分配时隙，而是<strong>按需动态地分配时隙</strong>，在输出线路上，一个用户所占用的时隙<strong>并不是周期性</strong>地出现的，所以统计时分复用，又叫做异步时分复用</li>
+<li>虽然统计时分复用的输出线路上的数据率小于各输入线路数据率的总和，但是从平均角度来看，二者是平衡的。<img src="/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/20200909-3.png" class title="image3"></li>
+</ul>
+</li>
+<li>波分复用<ul>
+<li>光的频分复用，同时为了减少由于路程长对光波造成的损耗，会添加一个光放大器EDFA<img src="/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/20200909-4.png" class title="image4"></li>
+</ul>
+</li>
+<li>码分复用<ul>
+<li>CDMA(Code Division Multiple Access)，码分多址，各用户挑选经过特殊处理的不同码型，因此各用户之间不会造成干扰。有很强的抗干扰能力，其频谱类似于白噪声，不易被敌人发现。</li>
+<li>每一个bit时间划分为m个短的间隔，成为码片，如：1bit划分为8个短的间隔，就可以划为 00100100</li>
+<li>令向量$S$表示站S的码分序列，$T$表示站T的码分序列，所以一定有两个不同站的码分序列<strong>正交</strong>，即$S*T=\frac{1}{m}  \sum_{i=1}^m S_iT_i=0 $</li>
+<li>通过这样的划分，实现了扩频，增加到了原来的m倍。</li>
+<li>如何进行传播的？<blockquote>
+<img src="/2020/09/09/%E7%89%A9%E7%90%86%E5%B1%82/20200909-5.png" class title="image5">
+<p>  通过每一个站点的特殊的码片序列，由于每一站均会收到所有站点发来的扩频信号，所以所有的站收到的都是<strong>叠加</strong>的信号$S_x+T_x$，如果接收站打算接收S站发来的信号时候，只需求$S<em>S_x$，因为$S</em>T_x$一定为0,由于不同的站，码分向量正交，所以为0，不用管。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -892,75 +1017,6 @@ pandas是数据分析之中的神器，任何的.csv,.json文件都可以通过p
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/leetcode-75/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/29/leetcode-75/" class="post-title-link" itemprop="url">leetcode-75</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-29 09:16:07 / 修改时间：09:30:30" itemprop="dateCreated datePublished" datetime="2020-07-29T09:16:07+08:00">2020-07-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>荷兰旗问题。 按照0,1,2的顺序对数组中的元素进行排序<br><img src="/2020/07/29/leetcode-75/20200729-1.png" class title="image1"></p>
-<h1 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h1><p>按照题目中的要求，需要通过原地算法，在原来的数组的基础上进行排序，同时有着重复的数字，那么可以利用指针的方法，通过设置三个指针，$P_0,P_2$代表数组中元素0的右边界，和元素2的左边界，$cur$表示当前元素<br><img src="/2020/07/29/leetcode-75/20200729-2.png" class title="image2"><br>那么怎样进行排序呢？<br>判断$cur$处的元素是多少，如果是0，那么就和$P_0$出的元素交换，如果是2，那么就和$P_2$处的元素进行交换这样$P_0,P_2$指针就把元素0和2分割了开来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void sortColors(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int p0&#x3D;0,p2&#x3D;nums.size()-1;</span><br><span class="line">        int cur&#x3D;0;</span><br><span class="line">        while(cur&lt;&#x3D;p2)&#123;</span><br><span class="line">            if(nums[cur]&#x3D;&#x3D;0)&#123;</span><br><span class="line">                swap(nums[p0],nums[cur]);</span><br><span class="line">                p0++;</span><br><span class="line">                cur++;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(nums[cur]&#x3D;&#x3D;2)&#123;</span><br><span class="line">                swap(nums[p2],nums[cur]);</span><br><span class="line">                p2--;</span><br><span class="line">            &#125;</span><br><span class="line">            else cur++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1032,7 +1088,7 @@ pandas是数据分析之中的神器，任何的.csv,.json文件都可以通过p
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
