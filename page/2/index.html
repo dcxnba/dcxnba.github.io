@@ -172,6 +172,147 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/31/leetcode-78/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/31/leetcode-78/" class="post-title-link" itemprop="url">leetcode-78</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-31 09:35:59 / 修改时间：09:56:32" itemprop="dateCreated datePublished" datetime="2020-07-31T09:35:59+08:00">2020-07-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给定一个数组$[1,2,3]$，求出他的不重复的子集</p>
+<h1 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h1><p>典型的树的结构，那么我们回顾一下回溯算法的模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void backtrack(路径，选择列表)&#123;</span><br><span class="line">    if 满足终止条件&#123;</span><br><span class="line">        res.push_back(路径)  </span><br><span class="line">        return;     </span><br><span class="line">    &#125;</span><br><span class="line">    for(选择:选择列表)&#123;</span><br><span class="line">        做选择  &#x2F;&#x2F;track.push_back</span><br><span class="line">        backtrack(路径，选择列表);</span><br><span class="line">        撤销选择</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>此时的想法就是，如何才能求得每一个子集，并且在求子集的过程之中，没有明显的终止条件，那么如何通过中间路径得到最后的结果，此时此刻我们就需要理解一下递归调用的情况了，递归是怎么进行运行的，这个问题一解决，就知道如何写代码了。你看递归调用的情况，开始递归调用，就跳到该函数的开头，然后再进行for循环，所以，如何求最终结果的代码，也就显而易见了，我们看一棵树。<br><img src="/2020/07/31/leetcode-78/20200731-1.png" class title="image1"><br>试想，如何才能得到按照顺序得到所有的子集呢？这是不是就是树的前序遍历？这样，问题就顺势解决了。</p>
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; res;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; subsets(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;int&gt; track;</span><br><span class="line">        backtrack(nums,0,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    void backtrack(vector&lt;int&gt;&amp; nums,int start,vector&lt;int&gt;&amp;track)&#123;</span><br><span class="line">        &#x2F;&#x2F;加入路径</span><br><span class="line">        res.push_back(track);</span><br><span class="line">        for(int i&#x3D;start;i&lt;nums.size();i++)&#123;</span><br><span class="line">            &#x2F;&#x2F;选择</span><br><span class="line">            track.push_back(nums[i]);</span><br><span class="line">            &#x2F;&#x2F;回溯</span><br><span class="line">            backtrack(nums,i+1,track);</span><br><span class="line">            &#x2F;&#x2F;撤销选择</span><br><span class="line">            track.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/leetcode-77/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/30/leetcode-77/" class="post-title-link" itemprop="url">leetcode-77</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-30 10:14:46 / 修改时间：10:29:29" itemprop="dateCreated datePublished" datetime="2020-07-30T10:14:46+08:00">2020-07-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><img src="/2020/07/30/leetcode-77/20200730-1.png" class title="image1">
+<h1 id="想法"><a href="#想法" class="headerlink" title="想法"></a>想法</h1><img src="/2020/07/30/leetcode-77/20200730-2.png" class title="image2">
+<p>按照最初的想法，就是这样进行组合，按照顺序从1开始选择一直到n<br>转念一想，这和回溯算法有啥区别呢？于是就想到了用回溯算法，我们画一颗树，来看看怎么回溯的。<br><img src="/2020/07/30/leetcode-77/20200730-3.png" class title="image3"><br>你看，把树一画出来，不就简洁明了了吗，hhhh，如何选择的过程如此清晰，那我们看一下回溯算法的伪代码吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void backtrack(路径，选择列表)&#123;</span><br><span class="line">    if 满足终止条件&#123;</span><br><span class="line">        res.push_back(路径)  </span><br><span class="line">        return;     </span><br><span class="line">    &#125;</span><br><span class="line">    for(选择:选择列表)&#123;</span><br><span class="line">        做选择  &#x2F;&#x2F;track.push_back</span><br><span class="line">        backtrack(路径，选择列表);</span><br><span class="line">        撤销选择</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>一般选择的终止条件都是达到这颗树的树根，就回溯，而树是很好做成递归的，用递归就很简单了</p>
+<h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; res;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; combine(int n, int k) &#123;</span><br><span class="line">        if(n&lt;&#x3D;0||k&lt;&#x3D;0)</span><br><span class="line">            return res;</span><br><span class="line">        vector&lt;int&gt; track;</span><br><span class="line">        backtrack(n,k,1,track);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">    void backtrack(int n,int k,int start,vector&lt;int&gt; &amp;track)&#123;</span><br><span class="line">        if(k&#x3D;&#x3D;track.size())&#123;</span><br><span class="line">            res.push_back(track);</span><br><span class="line">            return ;</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i&#x3D;start;i&lt;&#x3D;n;i++)&#123;</span><br><span class="line">             track.push_back(i);</span><br><span class="line">            backtrack(n,k,i+1,track);</span><br><span class="line">            track.pop_back();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/29/leetcode-75/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -769,154 +910,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/leetcode-62/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/19/leetcode-62/" class="post-title-link" itemprop="url">leetcode-62</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-19 10:27:01 / 修改时间：15:09:42" itemprop="dateCreated datePublished" datetime="2020-07-19T10:27:01+08:00">2020-07-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><ul>
-<li>找到在m*n的网格中，机器人走到终点时候能走的不同路径数。<img src="/2020/07/19/leetcode-62/20200719-1.png" class title="image1"></li>
-<li>解法一:<br>利用数学中的排列组合，机器人走到目标点一共有m+n-2步，其中，机器人会有n-1次向下走,所以总的路径数是<script type="math/tex">C_{m+n-2}^{n-1}</script>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python:</span><br><span class="line">def uniquePaths(self,m:int,n:int):</span><br><span class="line">    return int((math.factorial(m+n-2)&#x2F;(math.factorial(m-1)*math.factorial(n-1))))</span><br></pre></td></tr></table></figure></li>
-<li>解法二:<br>DP:保存子问题的最优解，再一步步更新保存的值<br>这道题中，每一个格子的走法都是他所在的格子的上面和左边的格子的走法之和,其中第一行和第一列均只有一种走法，所以都是1。<img src="/2020/07/19/leetcode-62/20200719-2.png" class title="image2">
-二维数组保存 d[i][j]=d[i-1][j]+d[i][j-1]<br>其中当i=0||j=0 时 d[i][j]=1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cpp:</span><br><span class="line">for(int i&#x3D;0;i&lt;m;i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;n;j++)&#123;</span><br><span class="line">                if(i&#x3D;&#x3D;0||j&#x3D;&#x3D;0)</span><br><span class="line">                    d[i][j]&#x3D;1;</span><br><span class="line">                else&#123;</span><br><span class="line">                    d[i][j]&#x3D;d[i-1][j]+d[i][j-1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-DP:<br>动态规划常常适用于有<strong>重叠子问题</strong>和<strong>最优子结构</strong>性质的问题。<br>比如斐波那契数列数列:保存子问题的值，免得计算时候又去计算重复的值，降低了时间复杂度。一般保存值时候，可以使用数组。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/First-Time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/18/First-Time/" class="post-title-link" itemprop="url">First Time</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-07-18 15:14:29 / 修改时间：18:55:02" itemprop="dateCreated datePublished" datetime="2020-07-18T15:14:29+08:00">2020-07-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/daily-life/" itemprop="url" rel="index"><span itemprop="name">daily life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="What-I-want-to-say"><a href="#What-I-want-to-say" class="headerlink" title="What I want to say"></a>What I want to say</h1><ul>
-<li>This is my first time using blog.I want to show you something what I learn.<br>Like Taylor Swift says in her song:”This is our place,we make the rules.”<br>I want all of us learn from each other.Say what you want to say. I will post something about machine learning &amp; leetcode &amp; English here. Wish you have a good time here.<br>If you want to know more about me, please click “about” on the left.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -984,14 +981,14 @@ DP:<br>动态规划常常适用于有<strong>重叠子问题</strong>和<strong>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

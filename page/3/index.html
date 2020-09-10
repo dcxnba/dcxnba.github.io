@@ -23,27 +23,27 @@
   <meta name="description" content="Don&#39;t talk! Show me the code.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cornelia">
-<meta property="og:url" content="http://yoursite.com/tags/%E8%A1%A8/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Cornelia">
 <meta property="og:description" content="Don&#39;t talk! Show me the code.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Peter">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/tags/%E8%A1%A8/">
+<link rel="canonical" href="http://yoursite.com/page/3/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: 表 | Cornelia</title>
+  <title>Cornelia</title>
   
 
 
@@ -166,52 +166,157 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/leetcode-62/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">表
-          <small>标签</small>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/19/leetcode-62/" class="post-title-link" itemprop="url">leetcode-62</a>
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-19 10:27:01 / 修改时间：15:09:42" itemprop="dateCreated datePublished" datetime="2020-07-19T10:27:01+08:00">2020-07-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+          <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><ul>
+<li>找到在m*n的网格中，机器人走到终点时候能走的不同路径数。<img src="/2020/07/19/leetcode-62/20200719-1.png" class title="image1"></li>
+<li>解法一:<br>利用数学中的排列组合，机器人走到目标点一共有m+n-2步，其中，机器人会有n-1次向下走,所以总的路径数是<script type="math/tex">C_{m+n-2}^{n-1}</script>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python:</span><br><span class="line">def uniquePaths(self,m:int,n:int):</span><br><span class="line">    return int((math.factorial(m+n-2)&#x2F;(math.factorial(m-1)*math.factorial(n-1))))</span><br></pre></td></tr></table></figure></li>
+<li>解法二:<br>DP:保存子问题的最优解，再一步步更新保存的值<br>这道题中，每一个格子的走法都是他所在的格子的上面和左边的格子的走法之和,其中第一行和第一列均只有一种走法，所以都是1。<img src="/2020/07/19/leetcode-62/20200719-2.png" class title="image2">
+二维数组保存 d[i][j]=d[i-1][j]+d[i][j-1]<br>其中当i=0||j=0 时 d[i][j]=1<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cpp:</span><br><span class="line">for(int i&#x3D;0;i&lt;m;i++)&#123;</span><br><span class="line">            for(int j&#x3D;0;j&lt;n;j++)&#123;</span><br><span class="line">                if(i&#x3D;&#x3D;0||j&#x3D;&#x3D;0)</span><br><span class="line">                    d[i][j]&#x3D;1;</span><br><span class="line">                else&#123;</span><br><span class="line">                    d[i][j]&#x3D;d[i-1][j]+d[i][j-1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+DP:<br>动态规划常常适用于有<strong>重叠子问题</strong>和<strong>最优子结构</strong>性质的问题。<br>比如斐波那契数列数列:保存子问题的值，免得计算时候又去计算重复的值，降低了时间复杂度。一般保存值时候，可以使用数组。</li>
+</ul>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-20T10:36:58+08:00"
-              content="2020-07-20">
-          07-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/07/20/%E9%99%88%E6%83%85%E8%A1%A8/" itemprop="url">
-            <span itemprop="name">陈情表</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/18/First-Time/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/18/First-Time/" class="post-title-link" itemprop="url">First Time</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-18 15:14:29 / 修改时间：18:55:02" itemprop="dateCreated datePublished" datetime="2020-07-18T15:14:29+08:00">2020-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/daily-life/" itemprop="url" rel="index"><span itemprop="name">daily life</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="What-I-want-to-say"><a href="#What-I-want-to-say" class="headerlink" title="What I want to say"></a>What I want to say</h1><ul>
+<li>This is my first time using blog.I want to show you something what I learn.<br>Like Taylor Swift says in her song:”This is our place,we make the rules.”<br>I want all of us learn from each other.Say what you want to say. I will post something about machine learning &amp; leetcode &amp; English here. Wish you have a good time here.<br>If you want to know more about me, please click “about” on the left.</li>
+</ul>
+
+      
     </div>
-  </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 
 
@@ -443,6 +548,59 @@ $(document).ready(function() {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
