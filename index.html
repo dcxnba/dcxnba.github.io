@@ -195,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-14 20:21:34 / 修改时间：21:09:09" itemprop="dateCreated datePublished" datetime="2020-09-14T20:21:34+08:00">2020-09-14</time>
+              <time title="创建时间：2020-09-14 20:21:34" itemprop="dateCreated datePublished" datetime="2020-09-14T20:21:34+08:00">2020-09-14</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-15 18:57:21" itemprop="dateModified" datetime="2020-09-15T18:57:21+08:00">2020-09-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -238,11 +244,17 @@
 </li>
 </ul>
 </li>
-<li>简单，封装成帧，透明性，多种网络协议，多种类型链路，差错控制，检测连接状态，最大传送单元，网络层地址协商，数据压缩协商<h2 id="ppp协议的组成"><a href="#ppp协议的组成" class="headerlink" title="ppp协议的组成"></a>ppp协议的组成</h2></li>
-<li>一个将IP数据段封装到串行链路的方法</li>
-<li>一个用来建立，配置和测试数据链路连接的链路控制协议LCP</li>
-<li>一套网络控制协议NCP<h2 id="ppp帧的格式"><a href="#ppp帧的格式" class="headerlink" title="ppp帧的格式"></a>ppp帧的格式</h2><img src="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200914-1.png" class title="image1">
-<h1 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h1></li>
+<li>简单，封装成帧，透明性，多种网络协议，多种类型链路，差错控制，检测连接状态，最大传送单元，网络层地址协商，数据压缩协商<h2 id="ppp协议的组成"><a href="#ppp协议的组成" class="headerlink" title="ppp协议的组成"></a>ppp协议的组成</h2>(1) 一个将IP数据段封装到串行链路的方法<br>(2) 一个用来建立，配置和测试数据链路连接的链路控制协议LCP<br>(3) 一套网络控制协议NCP</li>
+<li>各个字段的意义<img src="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200914-1.png" class title="image1"></li>
+<li>字节填充<ul>
+<li>异步传输时候，把转义字符定义为0x7D(0111 1101)，并使用字节填充<br>  (1) 把信息字段中出现的每一个0x7E 字节转变为2字节序列(0x7D,0x5E)<br>  (2) 若信息字段中出现一个0x7D 的字节(也就是出现了和转义字符一样的比特组合)，那么僵0x7D 转变为2字节序列(07xD,0x5D)<br>  ……</li>
+</ul>
+</li>
+<li>零比特填充<ul>
+<li>只要出现了连续的5个1，那么就立即填入一个0，这样可以保证在信息字段中不会出现6个连续的1</li>
+<li>接收端在收到一个帧时，先找到标志字段F以确定一个帧的边界，接着再用硬件对比特流进行扫描，当出现连续的5个1时候，删除后面的那个0，还原原来的比特流<h1 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h1></li>
+</ul>
+</li>
 <li>共享信道技术的两种方法<ul>
 <li>静态划分信道：频分，时分，波分，码分</li>
 <li>动态媒体接入控制：随机接入（可以随机地发送消息），受控接入（用户不能随机地发送信息而必须服从一定的控制）</li>
@@ -255,8 +267,14 @@
 </li>
 <li>数据链路层被划分为两个子层：<strong>逻辑链路控制（LLC）</strong>，<strong>媒体接入控制（MAC）</strong>，无论采用何种传输媒体和MAC子层的局域网，<em>对LLC来说都是透明的</em>。</li>
 <li><strong>CAMA/CD协议</strong></li>
-<li>协议要点：多点接入，载波监听，碰撞检测（记得周末完善）</li>
+<li>协议要点：多点接入，载波监听，碰撞检测   <ul>
+<li><strong>多点接入</strong>：计算机以多点接入的方式连接在一条总线上</li>
+<li><strong>载波监听</strong>：每个站都在不停地检测信道，看信道是否被占用</li>
+<li><strong>碰撞检测</strong>：边检测边监听，适配器边发送数据边检测信道上的信号电压的变化情况，以便判断自己在发送数据时其他站是否也在发送数据。</li>
+</ul>
+</li>
 <li>由于一个站不可能同时进行发送和接收，因此使用CSMA/CD协议的以太网只能进行双向交替通信。</li>
+<li>A发送数据之后，要想检测是否发生了碰撞，那么这个从发送数据到知道了发生碰撞这个时间，最多是<strong>两倍的总线端到端的传播时延</strong></li>
 <li><strong>截止二进制指数退避算法</strong><img src="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200914-2.png" class title="image2">
 注意在碰撞次数高于10次以后，k的值就不再变化，就为10，但是，碰撞次数是在增加的。</li>
 </ul>
