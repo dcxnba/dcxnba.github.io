@@ -203,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-15 18:57:21" itemprop="dateModified" datetime="2020-09-15T18:57:21+08:00">2020-09-15</time>
+                <time title="修改时间：2020-09-18 08:49:35" itemprop="dateModified" datetime="2020-09-18T08:49:35+08:00">2020-09-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -277,6 +277,14 @@
 <li>A发送数据之后，要想检测是否发生了碰撞，那么这个从发送数据到知道了发生碰撞这个时间，最多是<strong>两倍的总线端到端的传播时延</strong></li>
 <li><strong>截止二进制指数退避算法</strong><img src="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200914-2.png" class title="image2">
 注意在碰撞次数高于10次以后，k的值就不再变化，就为10，但是，碰撞次数是在增加的。</li>
+<li>争用期：以太网端到端的往返时间$2t$，争用期又被称为碰撞窗口，经过争用期这段时间还没有检测到碰撞，才能肯定这次发送不会发生碰撞</li>
+<li>以太网在发送数据时候，若在争用期（一共发送64字节）没有发生碰撞，那么后续发送的数据都不会发生碰撞，（检测到碰撞一定会立即停止发送数据，那么发送的长度一定小于64字节，所以<strong>凡是小于64字节的都是由于冲突而异常中止的无效帧</strong>）</li>
+<li>强化碰撞：当发送数据的站发现产生了碰撞时，除了立即停止发送数据之外，还会继续发送32bit/48bit的认为干扰信号，以便让所有的人知道发生了碰撞。<h1 id="以太网的MAC层"><a href="#以太网的MAC层" class="headerlink" title="以太网的MAC层"></a>以太网的MAC层</h1></li>
+<li>MAC帧的格式(以V2为标准)：<img src="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200918-1.png" class title="image3">
+<h1 id="扩展的以太网"><a href="#扩展的以太网" class="headerlink" title="扩展的以太网"></a>扩展的以太网</h1></li>
+<li>以太网交换机：实质是一个多接口的网桥，使多台主机工作<strong>同时通信（全双工的工作方式）</strong>，相互通信的主机都是独占传输媒体，无碰撞地传输数据，所以总的吞吐量来看，比用集线器连接的网络吞吐量更大。</li>
+<li>交换机的自学习功能<img src="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200918-2.png" class title="image4"></li>
+<li>高速/吉比特以太网，速度更快</li>
 </ul>
 
       
