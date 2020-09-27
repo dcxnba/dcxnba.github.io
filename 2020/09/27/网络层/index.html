@@ -20,26 +20,28 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="计算机系统的层次结构 具有多层结构的计算机系统 计算机的基本组成 冯诺依曼计算机结构—以运算器为中心 以存储器为中心的计算机结构  运算器：完成算术运算和逻辑运算，并将运算的中间结果暂存在运算器内 存储器：存放数据和程序 控制器：控制，指挥程序和数据的输入，运行以及处理运算结果 输入设备：用来将人们熟悉的信息形式转换为机器能识别的信息形式，eg：键盘，鼠标 输出设备：可将计算机的运算结果转换为人们">
+  <meta name="description" content="网络层提供的两种服务 虚电路：一种逻辑上的连接，不是真正的连接，同时这种连接又是必须的，必不可少的 数据报服务： 网络层向上只提供简单的，无连接的，尽最大努力交付的数据报服务，同时，网络层不会提供服务质量的承诺，意味着分组交换的过程之中可能会出错，重复，乱序 网络协议IP 与IP协议配套使用的协议包括(1，地址解析协议 ARP。2，网际控制报文协议 ICMP。3，网际组管理协议 IGMP)分类的I">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机系统概论">
-<meta property="og:url" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/index.html">
+<meta property="og:title" content="网络层">
+<meta property="og:url" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/index.html">
 <meta property="og:site_name" content="Cornelia">
-<meta property="og:description" content="计算机系统的层次结构 具有多层结构的计算机系统 计算机的基本组成 冯诺依曼计算机结构—以运算器为中心 以存储器为中心的计算机结构  运算器：完成算术运算和逻辑运算，并将运算的中间结果暂存在运算器内 存储器：存放数据和程序 控制器：控制，指挥程序和数据的输入，运行以及处理运算结果 输入设备：用来将人们熟悉的信息形式转换为机器能识别的信息形式，eg：键盘，鼠标 输出设备：可将计算机的运算结果转换为人们">
+<meta property="og:description" content="网络层提供的两种服务 虚电路：一种逻辑上的连接，不是真正的连接，同时这种连接又是必须的，必不可少的 数据报服务： 网络层向上只提供简单的，无连接的，尽最大努力交付的数据报服务，同时，网络层不会提供服务质量的承诺，意味着分组交换的过程之中可能会出错，重复，乱序 网络协议IP 与IP协议配套使用的协议包括(1，地址解析协议 ARP。2，网际控制报文协议 ICMP。3，网际组管理协议 IGMP)分类的I">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-1.png">
-<meta property="og:image" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-2.png">
-<meta property="og:image" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-3.png">
-<meta property="og:image" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-4.png">
-<meta property="og:image" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-5.png">
-<meta property="article:published_time" content="2020-09-12T10:19:39.000Z">
-<meta property="article:modified_time" content="2020-09-12T12:46:20.056Z">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-1.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-2.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-3.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-4.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-5.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-6.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-7.png">
+<meta property="article:published_time" content="2020-09-27T06:10:01.000Z">
+<meta property="article:modified_time" content="2020-09-27T07:27:23.731Z">
 <meta property="article:author" content="Peter">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-1.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/">
+<link rel="canonical" href="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/">
 
 
 <script id="page-configurations">
@@ -52,7 +54,7 @@
   };
 </script>
 
-  <title>计算机系统概论 | Cornelia</title>
+  <title>网络层 | Cornelia</title>
   
 
 
@@ -182,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -195,7 +197,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          计算机系统概论
+          网络层
         </h1>
 
         <div class="post-meta">
@@ -206,7 +208,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-09-12 18:19:39 / 修改时间：20:46:20" itemprop="dateCreated datePublished" datetime="2020-09-12T18:19:39+08:00">2020-09-12</time>
+              <time title="创建时间：2020-09-27 14:10:01 / 修改时间：15:27:23" itemprop="dateCreated datePublished" datetime="2020-09-27T14:10:01+08:00">2020-09-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">计算机组成原理</span></a>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
                 </span>
             </span>
 
@@ -236,26 +238,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="计算机系统的层次结构"><a href="#计算机系统的层次结构" class="headerlink" title="计算机系统的层次结构"></a>计算机系统的层次结构</h1><ul>
-<li>具有多层结构的计算机系统<img src="/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-1.png" class title="image1">
-<h1 id="计算机的基本组成"><a href="#计算机的基本组成" class="headerlink" title="计算机的基本组成"></a>计算机的基本组成</h1></li>
-<li>冯诺依曼计算机结构—以运算器为中心<img src="/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-2.png" class title="image2"></li>
-<li>以存储器为中心的计算机结构<img src="/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-3.png" class title="image3">
-<ul>
-<li><strong>运算器</strong>：完成算术运算和逻辑运算，并将运算的中间结果暂存在运算器内</li>
-<li><strong>存储器</strong>：存放数据和程序</li>
-<li><strong>控制器</strong>：控制，指挥程序和数据的输入，运行以及处理运算结果</li>
-<li><strong>输入设备</strong>：用来将人们熟悉的信息形式转换为机器能识别的信息形式，eg：键盘，鼠标</li>
-<li><strong>输出设备</strong>：可将计算机的运算结果转换为人们熟悉的信息形式，eg：打印机输出，显示器输出</li>
+        <h1 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h1><ul>
+<li>虚电路：一种逻辑上的连接，<strong>不是真正的连接</strong>，同时这种连接又是<strong>必须</strong>的，必不可少的</li>
+<li>数据报服务： 网络层向上只提供<strong>简单的，无连接的，尽最大努力交付</strong>的数据报服务，同时，网络层不会提供服务质量的承诺，意味着分组交换的过程之中可能会<strong>出错，重复，乱序</strong><img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-1.png" class title="image1">
+<h1 id="网络协议IP"><a href="#网络协议IP" class="headerlink" title="网络协议IP"></a>网络协议IP</h1></li>
+<li>与IP协议配套使用的协议包括(1，地址解析协议 ARP。2，网际控制报文协议 ICMP。3，网际组管理协议 IGMP)<h2 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h2></li>
+<li>IP地址及其表达方式<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-2.png" class title="image2"></li>
+<li>常用的三类IP地址和指派范围<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-3.png" class title="image3">
+在第一个A类的ip地址中，最大可指派的网络数，由于存在网络号<strong>全0和全1</strong>的情况，所以在计算的时候，要减去全0和全1的两种情况，所以最大可指派的网络数减了一个2，而其他的B类和C类，由于不存在全0和全1的情况，所以不存在减2的操作，所以不会减2。</li>
+<li>IP地址与硬件地址  <ul>
+<li>物理地址是数据链路层和物理层使用的地址，而IP地址是网络层和以上各层使用的地址，是一种逻辑地址。在发送过程之中，数据从高层到低层，然后才到通信链路上传输，使用IP地址的IP数据报一但交给了数据链路层，就被封装成MAC帧。MAC帧在传送时使用的源地址和目的地址都是硬件地址。（注意PPP帧是在点对点通信时候所采用的一种帧，并且基本是在广域网上面进行通信的，差不多和MAC帧是并列的关系）</li>
+<li>需要注意的是，信息的传递过程之中，IP地址中的源地址和目的地址都是没有改变的，改变的是MAC帧的源地址和目的地址</li>
 </ul>
 </li>
-<li>现代计算机的组成框图<img src="/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-4.png" class title="image4"></li>
-<li>主存储器：包括存储体M，各种逻辑部件及控制电路。主存的工作方式是按存储单元的地址号来实现对存储字各位的<strong>存</strong>（写入），<strong>取</strong>（读出）</li>
-<li>运算器：存放操作数的类型<img src="/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/20200912-5.png" class title="image5"></li>
-<li>控制器：计算机的神经中枢，指挥各部件自动协调地工作。</li>
-<li>I/O：I/O子系统包括各种I/O设备及其相应的接口，每一种I/O设备都由I/O接口与主机联系，它接收CU发出的各种控制命令，并完成相应的操作。<h1 id="计算机硬件的主要技术指标"><a href="#计算机硬件的主要技术指标" class="headerlink" title="计算机硬件的主要技术指标"></a>计算机硬件的主要技术指标</h1></li>
-<li>$存储容量=存储单元个数 * 存储子长$</li>
-<li>运算速度$T_M$,<script type="math/tex">T_M=\sum^n_{i=1}f_it_i</script><br>$f_i$为第i个指令占全部操作的百分比数，$t_i$为第i个指令的执行时间。</li>
+<li><p>IP数据报的格式</p>
+<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-4.png" class title="image4">
+<p>IP数据报首部的固定部分中的各字段的难懂意思</p>
+<ul>
+<li>首部长度：一共有4位，每位的单位都是<strong>32位字</strong>，eg:首部的长度最多达到15(1111)个32位字的长度，总共60字节，所以一般为了减少开销，首部选择5(0101)，这样总共是20字节，不会产生更多的开销</li>
+<li>片偏移：较长的分组在分片后，某片在原分组中的相对位置。（简单来说就是起点位置除以8，因为每个分片的长度一定是8字节的整数倍）<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-5.png" class title="image5">
+</li>
+</ul>
+</li>
+<li><p>IP层转发分组的流程</p>
+<ul>
+<li>（目的网络地址，下一跳地址），所以在路由器中进行传播过程之中，路由器会有一个表，记录下一跳是直接交付还是转到下一个路由器中。</li>
+<li>分组转发算法：<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-6.png" class title="image6">
+简单来说，就是不断的查路由表，以此来找到下一跳的地址，是直接交付，还是下一个路由器的地址。 <h2 id="划分子网"><a href="#划分子网" class="headerlink" title="划分子网"></a>划分子网</h2></li>
+</ul>
+</li>
+<li>为啥要划分？<ul>
+<li>两级IP地址不灵活，IP地址空间的利用率有时很低，给每一个物理网络分配一个网络号表会使路由器变得太大而使网络性能变坏</li>
+</ul>
+</li>
+<li>对外仍是一个网络<script type="math/tex">IP地址::={<网络号>,<子网号>,<主机号>}</script></li>
+<li>同时子网号是从主机号中分出来的。，通过与子网掩码进行想与运算，就知道了子网号是多少。</li>
+<li>使用子网时候的分组转发算法<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-7.png" class title="image7">
+<h2 id="无分类编制CIDR-构造超网"><a href="#无分类编制CIDR-构造超网" class="headerlink" title="无分类编制CIDR(构造超网)"></a>无分类编制CIDR(构造超网)</h2></li>
 </ul>
 
     </div>
@@ -275,13 +294,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/09/10/%E6%96%87%E6%B3%95%E5%92%8C%E8%AF%AD%E8%A8%80/" rel="prev" title="文法和语言">
-      <i class="fa fa-chevron-left"></i> 文法和语言
+    <a href="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="prev" title="数据链路层">
+      <i class="fa fa-chevron-left"></i> 数据链路层
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" rel="next" title="数据链路层">
-      数据链路层 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -340,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机系统的层次结构"><span class="nav-number">1.</span> <span class="nav-text">计算机系统的层次结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机的基本组成"><span class="nav-number">2.</span> <span class="nav-text">计算机的基本组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机硬件的主要技术指标"><span class="nav-number">3.</span> <span class="nav-text">计算机硬件的主要技术指标</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络层提供的两种服务"><span class="nav-number">1.</span> <span class="nav-text">网络层提供的两种服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络协议IP"><span class="nav-number">2.</span> <span class="nav-text">网络协议IP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类的IP地址"><span class="nav-number">2.1.</span> <span class="nav-text">分类的IP地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#划分子网"><span class="nav-number">2.2.</span> <span class="nav-text">划分子网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无分类编制CIDR-构造超网"><span class="nav-number">2.3.</span> <span class="nav-text">无分类编制CIDR(构造超网)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

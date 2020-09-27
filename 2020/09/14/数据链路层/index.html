@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="数据链路层传输的数据类型—帧使用点对点信道的数据链路层 通信时候的步骤 结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部 结点A把封装好的帧发送到结点B的数据链路层 若结点B的数据链路层收到的帧无差错，则从收到的帧中提取IP数据报交给上面的网络层；否则丢弃这个帧   数据链路层中的三个功能     封装成帧，透明传输，差错检测 封装成帧：控制字段SOH放在一帧的最前面，表示帧的首部开始">
+  <meta name="description" content="数据链路层传输的数据类型—帧使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧) 通信时候的步骤 结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部 结点A把封装好的帧发送到结点B的数据链路层 若结点B的数据链路层收到的帧无差错，则从收到的帧中提取IP数据报交给上面的网络层；否则丢弃这个帧   数据链路层中的三个功能     封装成帧，透明传输，差错检测 封装成帧：控制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据链路层">
 <meta property="og:url" content="http://yoursite.com/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
 <meta property="og:site_name" content="Cornelia">
-<meta property="og:description" content="数据链路层传输的数据类型—帧使用点对点信道的数据链路层 通信时候的步骤 结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部 结点A把封装好的帧发送到结点B的数据链路层 若结点B的数据链路层收到的帧无差错，则从收到的帧中提取IP数据报交给上面的网络层；否则丢弃这个帧   数据链路层中的三个功能     封装成帧，透明传输，差错检测 封装成帧：控制字段SOH放在一帧的最前面，表示帧的首部开始">
+<meta property="og:description" content="数据链路层传输的数据类型—帧使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧) 通信时候的步骤 结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部 结点A把封装好的帧发送到结点B的数据链路层 若结点B的数据链路层收到的帧无差错，则从收到的帧中提取IP数据报交给上面的网络层；否则丢弃这个帧   数据链路层中的三个功能     封装成帧，透明传输，差错检测 封装成帧：控制">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200914-1.png">
 <meta property="og:image" content="http://yoursite.com/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200914-2.png">
 <meta property="og:image" content="http://yoursite.com/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200918-1.png">
 <meta property="og:image" content="http://yoursite.com/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/20200918-2.png">
 <meta property="article:published_time" content="2020-09-14T12:21:34.000Z">
-<meta property="article:modified_time" content="2020-09-18T00:49:35.798Z">
+<meta property="article:modified_time" content="2020-09-27T06:09:42.757Z">
 <meta property="article:author" content="Peter">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -211,7 +211,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-18 08:49:35" itemprop="dateModified" datetime="2020-09-18T08:49:35+08:00">2020-09-18</time>
+                <time title="修改时间：2020-09-27 14:09:42" itemprop="dateModified" datetime="2020-09-27T14:09:42+08:00">2020-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
 
       
         <ul>
-<li>数据链路层传输的数据类型—<strong>帧</strong><h1 id="使用点对点信道的数据链路层"><a href="#使用点对点信道的数据链路层" class="headerlink" title="使用点对点信道的数据链路层"></a>使用点对点信道的数据链路层</h1></li>
+<li>数据链路层传输的数据类型—<strong>帧</strong><h1 id="使用点对点信道的数据链路层-主要针对的是广域网的通信，此时是ppp帧"><a href="#使用点对点信道的数据链路层-主要针对的是广域网的通信，此时是ppp帧" class="headerlink" title="使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧)"></a>使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧)</h1></li>
 <li>通信时候的步骤<ul>
 <li>结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部</li>
 <li>结点A把封装好的帧发送到结点B的数据链路层</li>
@@ -267,7 +267,7 @@
 </li>
 <li>零比特填充<ul>
 <li>只要出现了连续的5个1，那么就立即填入一个0，这样可以保证在信息字段中不会出现6个连续的1</li>
-<li>接收端在收到一个帧时，先找到标志字段F以确定一个帧的边界，接着再用硬件对比特流进行扫描，当出现连续的5个1时候，删除后面的那个0，还原原来的比特流<h1 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h1></li>
+<li>接收端在收到一个帧时，先找到标志字段F以确定一个帧的边界，接着再用硬件对比特流进行扫描，当出现连续的5个1时候，删除后面的那个0，还原原来的比特流<h1 id="使用广播信道的数据链路层-主要针对的是局域网的通信，此时的是MAC帧"><a href="#使用广播信道的数据链路层-主要针对的是局域网的通信，此时的是MAC帧" class="headerlink" title="使用广播信道的数据链路层(主要针对的是局域网的通信，此时的是MAC帧)"></a>使用广播信道的数据链路层(主要针对的是局域网的通信，此时的是MAC帧)</h1></li>
 </ul>
 </li>
 <li>共享信道技术的两种方法<ul>
@@ -322,7 +322,10 @@
     <a href="/2020/09/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" rel="prev" title="计算机系统概论">
       <i class="fa fa-chevron-left"></i> 计算机系统概论
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/" rel="next" title="网络层">
+      网络层 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -381,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用点对点信道的数据链路层"><span class="nav-number">1.</span> <span class="nav-text">使用点对点信道的数据链路层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点对点协议-PPP"><span class="nav-number">2.</span> <span class="nav-text">点对点协议(PPP)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ppp协议应满足的需求"><span class="nav-number">2.1.</span> <span class="nav-text">ppp协议应满足的需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ppp协议的组成"><span class="nav-number">2.2.</span> <span class="nav-text">ppp协议的组成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用广播信道的数据链路层"><span class="nav-number">3.</span> <span class="nav-text">使用广播信道的数据链路层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太网的MAC层"><span class="nav-number">4.</span> <span class="nav-text">以太网的MAC层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展的以太网"><span class="nav-number">5.</span> <span class="nav-text">扩展的以太网</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用点对点信道的数据链路层-主要针对的是广域网的通信，此时是ppp帧"><span class="nav-number">1.</span> <span class="nav-text">使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#点对点协议-PPP"><span class="nav-number">2.</span> <span class="nav-text">点对点协议(PPP)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ppp协议应满足的需求"><span class="nav-number">2.1.</span> <span class="nav-text">ppp协议应满足的需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ppp协议的组成"><span class="nav-number">2.2.</span> <span class="nav-text">ppp协议的组成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用广播信道的数据链路层-主要针对的是局域网的通信，此时的是MAC帧"><span class="nav-number">3.</span> <span class="nav-text">使用广播信道的数据链路层(主要针对的是局域网的通信，此时的是MAC帧)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以太网的MAC层"><span class="nav-number">4.</span> <span class="nav-text">以太网的MAC层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展的以太网"><span class="nav-number">5.</span> <span class="nav-text">扩展的以太网</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -397,7 +400,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

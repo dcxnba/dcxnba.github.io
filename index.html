@@ -172,6 +172,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/" class="post-title-link" itemprop="url">网络层</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-27 14:10:01 / 修改时间：15:27:23" itemprop="dateCreated datePublished" datetime="2020-09-27T14:10:01+08:00">2020-09-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h1><ul>
+<li>虚电路：一种逻辑上的连接，<strong>不是真正的连接</strong>，同时这种连接又是<strong>必须</strong>的，必不可少的</li>
+<li>数据报服务： 网络层向上只提供<strong>简单的，无连接的，尽最大努力交付</strong>的数据报服务，同时，网络层不会提供服务质量的承诺，意味着分组交换的过程之中可能会<strong>出错，重复，乱序</strong><img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-1.png" class title="image1">
+<h1 id="网络协议IP"><a href="#网络协议IP" class="headerlink" title="网络协议IP"></a>网络协议IP</h1></li>
+<li>与IP协议配套使用的协议包括(1，地址解析协议 ARP。2，网际控制报文协议 ICMP。3，网际组管理协议 IGMP)<h2 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h2></li>
+<li>IP地址及其表达方式<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-2.png" class title="image2"></li>
+<li>常用的三类IP地址和指派范围<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-3.png" class title="image3">
+在第一个A类的ip地址中，最大可指派的网络数，由于存在网络号<strong>全0和全1</strong>的情况，所以在计算的时候，要减去全0和全1的两种情况，所以最大可指派的网络数减了一个2，而其他的B类和C类，由于不存在全0和全1的情况，所以不存在减2的操作，所以不会减2。</li>
+<li>IP地址与硬件地址  <ul>
+<li>物理地址是数据链路层和物理层使用的地址，而IP地址是网络层和以上各层使用的地址，是一种逻辑地址。在发送过程之中，数据从高层到低层，然后才到通信链路上传输，使用IP地址的IP数据报一但交给了数据链路层，就被封装成MAC帧。MAC帧在传送时使用的源地址和目的地址都是硬件地址。（注意PPP帧是在点对点通信时候所采用的一种帧，并且基本是在广域网上面进行通信的，差不多和MAC帧是并列的关系）</li>
+<li>需要注意的是，信息的传递过程之中，IP地址中的源地址和目的地址都是没有改变的，改变的是MAC帧的源地址和目的地址</li>
+</ul>
+</li>
+<li><p>IP数据报的格式</p>
+<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-4.png" class title="image4">
+<p>IP数据报首部的固定部分中的各字段的难懂意思</p>
+<ul>
+<li>首部长度：一共有4位，每位的单位都是<strong>32位字</strong>，eg:首部的长度最多达到15(1111)个32位字的长度，总共60字节，所以一般为了减少开销，首部选择5(0101)，这样总共是20字节，不会产生更多的开销</li>
+<li>片偏移：较长的分组在分片后，某片在原分组中的相对位置。（简单来说就是起点位置除以8，因为每个分片的长度一定是8字节的整数倍）<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-5.png" class title="image5">
+</li>
+</ul>
+</li>
+<li><p>IP层转发分组的流程</p>
+<ul>
+<li>（目的网络地址，下一跳地址），所以在路由器中进行传播过程之中，路由器会有一个表，记录下一跳是直接交付还是转到下一个路由器中。</li>
+<li>分组转发算法：<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-6.png" class title="image6">
+简单来说，就是不断的查路由表，以此来找到下一跳的地址，是直接交付，还是下一个路由器的地址。 <h2 id="划分子网"><a href="#划分子网" class="headerlink" title="划分子网"></a>划分子网</h2></li>
+</ul>
+</li>
+<li>为啥要划分？<ul>
+<li>两级IP地址不灵活，IP地址空间的利用率有时很低，给每一个物理网络分配一个网络号表会使路由器变得太大而使网络性能变坏</li>
+</ul>
+</li>
+<li>对外仍是一个网络<script type="math/tex">IP地址::={<网络号>,<子网号>,<主机号>}</script></li>
+<li>同时子网号是从主机号中分出来的。，通过与子网掩码进行想与运算，就知道了子网号是多少。</li>
+<li>使用子网时候的分组转发算法<img src="/2020/09/27/%E7%BD%91%E7%BB%9C%E5%B1%82/20200927-7.png" class title="image7">
+<h2 id="无分类编制CIDR-构造超网"><a href="#无分类编制CIDR-构造超网" class="headerlink" title="无分类编制CIDR(构造超网)"></a>无分类编制CIDR(构造超网)</h2></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/14/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,7 +308,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-18 08:49:35" itemprop="dateModified" datetime="2020-09-18T08:49:35+08:00">2020-09-18</time>
+                <time title="修改时间：2020-09-27 14:09:42" itemprop="dateModified" datetime="2020-09-27T14:09:42+08:00">2020-09-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +332,7 @@
 
       
           <ul>
-<li>数据链路层传输的数据类型—<strong>帧</strong><h1 id="使用点对点信道的数据链路层"><a href="#使用点对点信道的数据链路层" class="headerlink" title="使用点对点信道的数据链路层"></a>使用点对点信道的数据链路层</h1></li>
+<li>数据链路层传输的数据类型—<strong>帧</strong><h1 id="使用点对点信道的数据链路层-主要针对的是广域网的通信，此时是ppp帧"><a href="#使用点对点信道的数据链路层-主要针对的是广域网的通信，此时是ppp帧" class="headerlink" title="使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧)"></a>使用点对点信道的数据链路层(主要针对的是广域网的通信，此时是ppp帧)</h1></li>
 <li>通信时候的步骤<ul>
 <li>结点A的数据链路层把网络层交下来的IP数据报添加首部和尾部</li>
 <li>结点A把封装好的帧发送到结点B的数据链路层</li>
@@ -252,7 +357,7 @@
 </li>
 <li>零比特填充<ul>
 <li>只要出现了连续的5个1，那么就立即填入一个0，这样可以保证在信息字段中不会出现6个连续的1</li>
-<li>接收端在收到一个帧时，先找到标志字段F以确定一个帧的边界，接着再用硬件对比特流进行扫描，当出现连续的5个1时候，删除后面的那个0，还原原来的比特流<h1 id="使用广播信道的数据链路层"><a href="#使用广播信道的数据链路层" class="headerlink" title="使用广播信道的数据链路层"></a>使用广播信道的数据链路层</h1></li>
+<li>接收端在收到一个帧时，先找到标志字段F以确定一个帧的边界，接着再用硬件对比特流进行扫描，当出现连续的5个1时候，删除后面的那个0，还原原来的比特流<h1 id="使用广播信道的数据链路层-主要针对的是局域网的通信，此时的是MAC帧"><a href="#使用广播信道的数据链路层-主要针对的是局域网的通信，此时的是MAC帧" class="headerlink" title="使用广播信道的数据链路层(主要针对的是局域网的通信，此时的是MAC帧)"></a>使用广播信道的数据链路层(主要针对的是局域网的通信，此时的是MAC帧)</h1></li>
 </ul>
 </li>
 <li>共享信道技术的两种方法<ul>
@@ -1053,84 +1158,6 @@ pandas是数据分析之中的神器，任何的.csv,.json文件都可以通过p
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/11/%E7%BC%96%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">编码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-11 19:52:21" itemprop="dateCreated datePublished" datetime="2020-08-11T19:52:21+08:00">2020-08-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-12 16:11:26" itemprop="dateModified" datetime="2020-08-12T16:11:26+08:00">2020-08-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/kaggle/" itemprop="url" rel="index"><span itemprop="name">kaggle</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="one-hot"><a href="#one-hot" class="headerlink" title="one-hot"></a>one-hot</h1><p>我们来看一组很小的数据<br>[“male”, “female”]</p>
-<p>[“from Europe”, “from US”, “from Asia”]</p>
-<p>[“uses Firefox”, “uses Chrome”, “uses Safari”, “uses Internet Explorer”]<br>如果我们要将这些数据输入到电脑里面，我们该怎么做呢？一个想法就是编码编成001,010,011这样的形式，这样编码也是可以的，但是转念一想，这样的二进制的编码有着明确的顺序的含义在里面，这样的编码肯定是不足以体现数据的特征的，如果你要去找一个数据，那么就会存在数据都是按照一定的序列的，这明显是不具有一般性的。<br>我们来看一下一个例子：高，中，低，三个特征，如何来区分？我们用三位编码就可以实现。来看一下这个编码 001, 010 ,100,仔细一看，这个编码有着一个典型的优点，每一个编码有且仅有一位是1，其他位均是0，这样的造成的结果就是每一个编码都是独立的，而且并不在潜意识下存在顺序，同时这些编码又都是互斥的，所以又是稀疏的，把一个个特征转换成这样的编码，这样的编码就是one-hot编码，也叫独热编码。<br>one-hot编码的好处显而易见：（1）能让特征变得离散，特征之间又都是互斥的。（2）解决了分类器不好处理属性数据的问题。（3）在一定程度上起到了扩充特征的作用。<br>紧接着，我们来看sklearn的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import preprocessing</span><br><span class="line"></span><br><span class="line">enc &#x3D; preprocessing.OneHotEncoder()</span><br><span class="line"></span><br><span class="line">enc.fit([[0, 0, 3], [1, 1, 0], [0, 2, 1], [1, 0, 2]])</span><br><span class="line"></span><br><span class="line">enc.transform([[0, 1, 3]]).toarray()</span><br></pre></td></tr></table></figure><br>输出结果：</p>
-<p>array([[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]])</p>
-<p>Note: fit了4个数据3个特征，而transform了1个数据3个特征。第一个特征两种值(0: 10, 1: 01)，第二个特征三种值(0: 100, 1: 010, 2: 001)，第三个特征四种值(0: 1000, 1: 0100, 2: 0010, 3: 0001)。所以转换[0, 1, 3]为[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1202,7 +1229,7 @@ pandas是数据分析之中的神器，任何的.csv,.json文件都可以通过p
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
