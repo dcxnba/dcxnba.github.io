@@ -172,6 +172,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">利用动态规划找寻最优策略</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 15:05:25" itemprop="dateCreated datePublished" datetime="2020-07-20T15:05:25+08:00">2020-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-21 15:11:44" itemprop="dateModified" datetime="2020-07-21T15:11:44+08:00">2020-07-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reinforcement-Learning/" itemprop="url" rel="index"><span itemprop="name">Reinforcement Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>策略评估和策略迭代<br>(1)策略评估: 计算给定策略下状态价值函数的过程，通过上节的贝尔曼方程，<script type="math/tex">V_{k+1}=\sum_{a\in A}\pi(a|s)(R_s^a+\gamma P^a_{ss'}v_k(s'))</script>可以从这个方程中发现，在策略$\pi$下，通过后续的状态计算出当前状态的价值，就是在$MDP$链之中的策略评估，而这个$\pi$可以是均一策略也可以是$greedy$策略<br>(2)策略迭代<img src="/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/20200720-1.png" class title="策略迭代示意图">
+假设根据贪婪策略的形式来更新初始的策略，那么有<script type="math/tex">\pi'(s)=argmax_{a\in A}q_{\pi}(s,a)</script><br>所以在更新的时候，都是朝着行为价值函数的最大化的情况下进行更新，由此产生一个迭代的过程，贪婪策略对问题中的初始策略进行更新，使得策略的迭代朝着好的方向进行</li>
+<li>价值迭代<br>通过贝尔曼方程，我们能够知道此时此刻的价值，可以通过后续的价值进行求解，那么就有<script type="math/tex">v_{k+1}=max_{a\in A}(R_s^a+\gamma P^a_{ss'}v_k(s'))</script><br>根据最优化和价值最大化的原则，那么就有价值函数的迭代过程之中都是靠着$max$的原则进行</li>
+<li>动态规划<br>我们想要得到的是整个过程之中的最大化的价值，那么就可以通过求解子问题，最优化子问题，从而得到原问题的最优。</li>
+<li>reference：《叶强-强化学习笔记》</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E9%99%88%E6%83%85%E8%A1%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -541,7 +621,7 @@ DP:<br>动态规划常常适用于有<strong>重叠子问题</strong>和<strong>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -554,7 +634,7 @@ DP:<br>动态规划常常适用于有<strong>重叠子问题</strong>和<strong>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

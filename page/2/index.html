@@ -172,6 +172,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">机器学习基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-13 19:37:26" itemprop="dateCreated datePublished" datetime="2020-08-13T19:37:26+08:00">2020-08-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-14 20:07:33" itemprop="dateModified" datetime="2020-08-14T20:07:33+08:00">2020-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="学习算法"><a href="#学习算法" class="headerlink" title="学习算法"></a>学习算法</h1><p>(1) 任务T：eg:异常检测，分类，回归…<br>(2) 性能度量P：我们可以通过准确率，错误率等等一些评价标准，使用测试集的数据来评估系统性能<br>(3) 经验E：根据学习过程之中的不同经验，大致可以从无监督和监督学习的分类下进行分类，其中在监督学习的情况之下，数据点都会是有label和target的，然而在无监督的情况之下，就没有label和target，通过一个联合的概率分布$P(X)=\prod_{i-1}^nP(X_i|X_1,X_2…X_{i-1})$来预测当前所观测的数据点的情况，但是诸如强化学习这样智能体和环境进行交互的学习方式，经验的定义又会有所不同</p>
+<h1 id="容量，过拟合，欠拟合"><a href="#容量，过拟合，欠拟合" class="headerlink" title="容量，过拟合，欠拟合"></a>容量，过拟合，欠拟合</h1><p>泛化：模型在新数据下的表现情况<br>既然我们想要一个很优秀的模型，这个模型能够很好的拟合一些新数据，那么我们想要的就是减少泛化误差（测试误差），我们真正需要的就是减少测试误差—&gt;$\frac{1}{m^{test}}||X^{test}\omega -Y^{test}||_2^2$，这里我们暂且利用欧式距离来表示，然而我们能够减少的只能是训练过程中的误差，但是我们关心的是测试误差，根据统计学习理论，他告诉我们，假设在训练之前，这些数据都是<strong>独立同分布</strong>的，那么在train和test数据集上，无非就是两者的数据的名字不同，里面的数据都是采样至同一个分布的数据之中，所以我们要做的就是<br>(1) 降低训练误差<br>(2) 减少训练误差和测试误差之间的差距<br>显然，过拟合和欠拟合就在此时此刻自然出现了。注意过拟合就是指训练误差和测试误差之间的差距过大<br>通过调整模型的容量，我们可以控制模型是否偏向于过拟合或者欠拟合。通俗地，模型的容量是指其拟合各种函数的能力。容量低的模型可能很难拟 合训练集。容量高的模型可能会过拟合，因为记住了不适用于测试集的训练集性质。比如在一个线性回归的过程之中，如果我们采用一个9次多项式的形式，那么很有可能最后会造成过拟合的困境，如果是一次多项式，会很有可能产生欠拟合的情况。</p>
+<h1 id="没有免费午餐定理"><a href="#没有免费午餐定理" class="headerlink" title="没有免费午餐定理"></a>没有免费午餐定理</h1><p>没有免费午餐定理告诉我们，没有一个机器学习算法总是比其他的好，我们能够设想的最先进的算法和简单地将所有点归为同一类的简单算法有着相同的平均性能（在所有可能的任务上）。 </p>
+<h1 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h1><p>有时候我们所假定的多项式函数不总是那么有效的，所以为了解决容量带来的一些问题，我们加入一个正则项，来惩罚函数的复杂度，以一个线性回归问题作为例子。<br>$J(\omega)=MSE_{train}+\lambda \omega ^T \omega $ ，$\lambda$是我们选择的一个超参，当他为0的时候，表示此时没有任何的惩罚系数，表示此刻我们没有任何的偏好，此时的正则化项是$\omega ^T \omega $，我们来看一幅图，具体看看是怎样惩罚函数的复杂度的<br><img src="/2020/08/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80/20200814-1.png" class title="image1"><br>这幅图之中，真实的函数时二次的，我们采用9次多项式来检验。<br>可以发现，通过正则化项，我们降低的是泛化误差，而不是训练误差</p>
+<h1 id="超参数和验证集"><a href="#超参数和验证集" class="headerlink" title="超参数和验证集"></a>超参数和验证集</h1><p>上面的$\lambda$就是一个超参数，这个超参是机器学习不能学习的，这就造成了这个东西太难优化，为了解决这一个问题，我们就需要设置一个验证集，比如在训练集中拿出80%的数据进行训练，而剩下的20%的数据进行验证。</p>
+<h2 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h2><p>算法 5.1 k-折交叉验证算法。当给定数据集 D 对于简单的训练/测试或训练/验证分 割而言太小难以产生泛化误差的准确估计时（因为在小的测试集上，L 可能具有过 高的方差），k-折交叉验证算法可以用于估计学习算法 A 的泛化误差。数据集 D 包 含的元素是抽象的样本 z(i)（对于第 i 个样本），在监督学习的情况代表（输入，目标）对 z(i) = (x(i),y(i)) ，或者无监督学习的情况下仅用于输入 z(i) = x(i)。该算法 返回 D 中每个示例的误差向量 e，其均值是估计的泛化误差。单个样本上的误差可 用于计算平均值周围的置信区间（式(5.47)）。虽然这些置信区间在使用交叉验证之 后不能很好地证明，但是通常的做法是只有当算法 A 误差的置信区间低于并且不与 算法 B 的置信区间相交时，我们才声明算法 A 比算法 B 更好。</p>
+<p>Deﬁne KFoldXV(D,A,L,k):<br>Require: D 为给定数据集，其中元素为 z(i)<br>Require: A 为学习算法，可视为一个函数（使用数据集作为输入，输出一个学好的 函数）<br>Require: L 为损失函数，可视为来自学好的函数 f，将样本 z(i) ∈ D 映射到 R 中 标量的函数<br>Require: k 为折数<br>将 D 分为 k 个互斥子集 Di，它们的并集为D<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i from 1 to k do</span><br><span class="line">  fi &#x3D; A(D\Di) </span><br><span class="line">  for z(j) in Di do </span><br><span class="line">    ej &#x3D; L(fi,z(j))</span><br><span class="line">    end for </span><br><span class="line">end for </span><br><span class="line">Return e</span><br></pre></td></tr></table></figure><br>看着这个东西如此复杂，转念一想，每次我们把数据分为K份，取其中的1份作为测试集，其余的作为数据集，然后我们继续这个动作，最后的验证集的MSE是k分之一，这就是K折交叉验证。从而测试集的作用拿来训练模型和调参，验证集则是对模型的好坏进行评估。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/11/%E7%BC%96%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -833,86 +913,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/" class="post-title-link" itemprop="url">利用动态规划找寻最优策略</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-20 15:05:25" itemprop="dateCreated datePublished" datetime="2020-07-20T15:05:25+08:00">2020-07-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-21 15:11:44" itemprop="dateModified" datetime="2020-07-21T15:11:44+08:00">2020-07-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reinforcement-Learning/" itemprop="url" rel="index"><span itemprop="name">Reinforcement Learning</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>策略评估和策略迭代<br>(1)策略评估: 计算给定策略下状态价值函数的过程，通过上节的贝尔曼方程，<script type="math/tex">V_{k+1}=\sum_{a\in A}\pi(a|s)(R_s^a+\gamma P^a_{ss'}v_k(s'))</script>可以从这个方程中发现，在策略$\pi$下，通过后续的状态计算出当前状态的价值，就是在$MDP$链之中的策略评估，而这个$\pi$可以是均一策略也可以是$greedy$策略<br>(2)策略迭代<img src="/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/20200720-1.png" class title="策略迭代示意图">
-假设根据贪婪策略的形式来更新初始的策略，那么有<script type="math/tex">\pi'(s)=argmax_{a\in A}q_{\pi}(s,a)</script><br>所以在更新的时候，都是朝着行为价值函数的最大化的情况下进行更新，由此产生一个迭代的过程，贪婪策略对问题中的初始策略进行更新，使得策略的迭代朝着好的方向进行</li>
-<li>价值迭代<br>通过贝尔曼方程，我们能够知道此时此刻的价值，可以通过后续的价值进行求解，那么就有<script type="math/tex">v_{k+1}=max_{a\in A}(R_s^a+\gamma P^a_{ss'}v_k(s'))</script><br>根据最优化和价值最大化的原则，那么就有价值函数的迭代过程之中都是靠着$max$的原则进行</li>
-<li>动态规划<br>我们想要得到的是整个过程之中的最大化的价值，那么就可以通过求解子问题，最优化子问题，从而得到原问题的最优。</li>
-<li>reference：《叶强-强化学习笔记》</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -984,7 +984,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -997,7 +997,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
