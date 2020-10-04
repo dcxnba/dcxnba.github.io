@@ -172,6 +172,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/" class="post-title-link" itemprop="url">不基于模型的预测</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-07-21 15:06:20 / 修改时间：15:51:10" itemprop="dateCreated datePublished" datetime="2020-07-21T15:06:20+08:00">2020-07-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Reinforcement-Learning/" itemprop="url" rel="index"><span itemprop="name">Reinforcement Learning</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>有模型和无模型<br>在这之前的强化学习问题，均是基于马尔科夫链的预测和策略选择，而$MDP$在现实生活之中不那么容易通过建模，把实际的问题建立成$MDP$，一些情况下利用函数去拟合具体的问题显得格外困难，于是就有了无模型的预测</li>
+<li>MC学习<br>我们知道在一个问题之中，总是有一个基于特定策略$\pi$的一个状态序列:$S_1,A_1,R_2,S_2,A_2……S_t,A_t,R_{t+1}…..S_k$~$\pi$ 在t时刻的收获可以表示为<script type="math/tex; mode=display">G_t=R_{t+1}+\gamma R_{t+2}+...+\gamma ^{T-1}R_T</script>所以就有在某一状态s的价值为:<script type="math/tex; mode=display">V_{\pi}(s)=E_{\pi}[G_t|S_t=s]</script>上一节之中，通过一个迭代式更新价值函数，在$MDP$的情况下，有着完整的状态转移矩阵，所以更新时候可以借助贝尔曼方程，结合贪婪的策略对既定策略进行修正。而在无模型的情况下，我们不知道状态转移矩阵，并且也存在着某一状态被多次访问的问题，如何更新价值函数就显得有点棘手。<br>但我们观察上面的两个公式，一个是收获，一个是价值，价值是收获的期望，是一种意义上的平均，那么我们可以利用平均的思想，对价值进行更新，比如，当他再次访问状态$s$的时候，会另外产生一个收获，而此刻的状态$s$，已经有了一个价值，所以通过两者的差，对价值进行修正。设$N(S_t)$表示访问状态$S_t$的次数，所以更新公式为<script type="math/tex">N(S_t)<-N(S_t)+1</script><script type="math/tex; mode=display">V(S_t)<-V(S_t)+\frac{1} {N(S_t)} (G_t-V(S_t)</script></li>
+<li>TD 学习<br>将$MC$学习中的$G_t$展开，得到如下式子<script type="math/tex; mode=display">V(S_t)<-V(S_t)+\alpha (R_{t+1}+\gamma V(S_{t+1})-V(S_t))</script>这就是$TD$学习，是不是很简单，hhhhhh,其中$R_{t+1}+\gamma V(S_{t+1})$称为TD目标，$R_{t+1}+\gamma V(S_{t+1})-V(S_t)$称为TD误差，那么你是否有着疑问，这东西和$MC$有啥区别？这当然有区别了，你看$G_t$，我不展开的话，他表示的是收集整个序列的后续情况来更新，这难免在时间上会更长，但是他更新时候会一早就知道问题中的最终结果，而你把他展开，表示的就是你只关心下一个状态$S_{t+1}$，文艺点的话讲就是，我只关心我目前所处的位置和下一个位置，对于最终问题的结果，我先算来放在那，等我走的更远了，我再更新他，最终和$MC$方法得到的结果均是一样的，就像下面的图所示一样的<img src="/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-1.png" class title="MC深层采样">
+</li>
+<li>n步TD学习<br>你看我们知道MC是深层采样，意味着我会看后面的很多步，上面说的TD只看一步，那么我可不可以往后多看几步呢？如果我往后看无穷多步呢？这是不是意味着，当往后看的越多，TD方法越来月接近MC？<br><img src="/2020/07/21/%E4%B8%8D%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%A2%84%E6%B5%8B/20200721-3.png" class title="n-步预测">所以我们能很快的得到n步情况下的更新公式<script type="math/tex; mode=display">V(S_t)<-V(S_t)+\alpha  (G_t^{n}-V(S_t)</script>那么这也有什么意义呢？在我看来，这样做得到的结果更接近正确答案，相比较$MC$方法，时间会更短。</li>
+<li>reference 《叶强-强化学习笔记》</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E5%88%A9%E7%94%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%89%BE%E5%AF%BB%E6%9C%80%E4%BC%98%E7%AD%96%E7%95%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -621,20 +696,20 @@ DP:<br>动态规划常常适用于有<strong>重叠子问题</strong>和<strong>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
