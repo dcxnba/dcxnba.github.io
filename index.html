@@ -172,6 +172,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/13/%E5%88%9D%E5%AD%A6Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Peter">
+      <meta itemprop="description" content="Don't talk! Show me the code.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cornelia">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/13/%E5%88%9D%E5%AD%A6Git/" class="post-title-link" itemprop="url">初学Git</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-13 16:33:56 / 修改时间：16:58:50" itemprop="dateCreated datePublished" datetime="2020-10-13T16:33:56+08:00">2020-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>仓库的创建以及代码文件的创建<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name&quot;dcx&quot;</span><br><span class="line">git config --global user.email&quot;neudcx@gmail.com&quot;</span><br><span class="line">git init&#x2F;&#x2F;初始化</span><br><span class="line">touch xxx.py&#x2F;xxx.txt&#x2F;xxx.cpp</span><br></pre></td></tr></table></figure></li>
+<li>文件的编写以及放入仓库<ul>
+<li>直接在源文件之中进行编写<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat xxx.txt&#x2F;xxx.py &#x2F;&#x2F;查看你所要查看文件的具体内容。</span><br><span class="line">git status &#x2F;&#x2F;查看此时文件的状态</span><br><span class="line">git diff   &#x2F;&#x2F;查看更改之后的文件和上一次更改时候的文件的差别</span><br><span class="line">git add &lt;message&gt;  &#x2F;&#x2F;添加更改之后的文件进入仓库</span><br><span class="line">git commit -m &quot;此时你想定义的操作的名称&quot;  &#x2F;&#x2F;确认提交修改之后的文件或者代码</span><br><span class="line">git log --pretty&#x3D;oneline  &#x2F;&#x2F;查看记录中提交了几次修改，</span><br></pre></td></tr></table></figure></li>
+<li>注意在git log命令之后，有可以标识每次修改之后的文件状态的指针，（这个很重要），有了这个指针之后，就可以利用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset -hard 指针</span><br><span class="line">git reset -hard HEAD &#x2F;&#x2F;返回头指针所指的地方</span><br></pre></td></tr></table></figure>
+回退文件到你想要回退的版本之中。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/04/DQN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -197,7 +273,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-10-04 14:34:54 / 修改时间：14:46:45" itemprop="dateCreated datePublished" datetime="2020-10-04T14:34:54+08:00">2020-10-04</time>
+              <time title="创建时间：2020-10-04 14:34:54 / 修改时间：16:33:04" itemprop="dateCreated datePublished" datetime="2020-10-04T14:34:54+08:00">2020-10-04</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1097,79 +1173,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/04/%E6%96%B0%E5%AD%A6%E6%9C%9Fflag/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Peter">
-      <meta itemprop="description" content="Don't talk! Show me the code.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cornelia">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/04/%E6%96%B0%E5%AD%A6%E6%9C%9Fflag/" class="post-title-link" itemprop="url">新学期flag</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-09-04 13:05:40 / 修改时间：20:36:42" itemprop="dateCreated datePublished" datetime="2020-09-04T13:05:40+08:00">2020-09-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/daily-life/" itemprop="url" rel="index"><span itemprop="name">daily life</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="New"><a href="#New" class="headerlink" title="New"></a>New</h1><p>经历了一些神仙迷幻操作之后，我又回到了这个熟悉的地方，还有两年，还会坐5次G1282或者再坐5次航班，我就会离开这里，，默默记录着，中午时候给家里打了一个电话，电话里妈说要不要回去吃饭，把饭给你留着，可能现在年纪大了，听不得这些东西，现在写着写着，眼眶也不由自主地变湿了，曾经一心想要的那个男孩，如今只想着能够在家待更过的时间，疫情导致了开学不能正常开始，同时也让我能够得以在高中毕业之后在家待这么长的时间，或者是庆幸，我曾以为这次在家待这么长的时间，完全可以在离开家的时候能够那般从容，没想到，仍然湿了一路。昨天早上拍了拍灰，整理了一下酒店的被子，对着酒店，眼含热泪地说：“再见了成都，下次我一定会回来的”。同时心理也按下决心，一定要在大三下开始的考研之中拼劲全力，同时为了能够在家那边站稳自己的脚跟，弥补自己的遗憾，那么新学习新开始，要有一个必要的flag，而这个flag将会引导我度过这段日子，既然你是带着遗憾来到这里的，那么要把遗憾也带走吗？不，就让遗憾深埋在这块土地吧，我们本没缘，就让这片土地记录这些个日日夜夜。</p>
-<h2 id="step"><a href="#step" class="headerlink" title="step"></a>step</h2><ul>
-<li>leetcode 3天/题</li>
-<li>一个月一个完整的kaggle比赛</li>
-<li>这学期一个完整的DQN的实战项目</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1241,14 +1244,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
