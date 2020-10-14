@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="仓库的创建以及代码文件的创建1234git config --global user.name&quot;dcx&quot;git config --global user.email&quot;neudcx@gmail.com&quot;git init&#x2F;&#x2F;初始化touch xxx.py&#x2F;xxx.txt&#x2F;xxx.cpp 文件的编写以及放入仓库  直接在源">
+  <meta name="description" content="仓库的创建以及代码文件的创建1234git config --global user.name&quot;dcx&quot;git config --global user.email&quot;neudcx@gmail.com&quot;git init&#x2F;&#x2F;初始化touch xxx.py&#x2F;xxx.txt&#x2F;xxx.cpp Git的命令  直接在源文件之中进">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初学Git">
 <meta property="og:url" content="http://yoursite.com/2020/10/13/%E5%88%9D%E5%AD%A6Git/index.html">
 <meta property="og:site_name" content="Cornelia">
-<meta property="og:description" content="仓库的创建以及代码文件的创建1234git config --global user.name&quot;dcx&quot;git config --global user.email&quot;neudcx@gmail.com&quot;git init&#x2F;&#x2F;初始化touch xxx.py&#x2F;xxx.txt&#x2F;xxx.cpp 文件的编写以及放入仓库  直接在源">
+<meta property="og:description" content="仓库的创建以及代码文件的创建1234git config --global user.name&quot;dcx&quot;git config --global user.email&quot;neudcx@gmail.com&quot;git init&#x2F;&#x2F;初始化touch xxx.py&#x2F;xxx.txt&#x2F;xxx.cpp Git的命令  直接在源文件之中进">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-10-13T08:33:56.000Z">
-<meta property="article:modified_time" content="2020-10-13T09:13:53.350Z">
+<meta property="article:modified_time" content="2020-10-14T13:42:58.460Z">
 <meta property="article:author" content="Peter">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -198,10 +198,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-10-13 16:33:56 / 修改时间：17:13:53" itemprop="dateCreated datePublished" datetime="2020-10-13T16:33:56+08:00">2020-10-13</time>
+              <time title="创建时间：2020-10-13 16:33:56" itemprop="dateCreated datePublished" datetime="2020-10-13T16:33:56+08:00">2020-10-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-14 21:42:58" itemprop="dateModified" datetime="2020-10-14T21:42:58+08:00">2020-10-14</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,7 +238,7 @@
       
         <ul>
 <li>仓库的创建以及代码文件的创建<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name&quot;dcx&quot;</span><br><span class="line">git config --global user.email&quot;neudcx@gmail.com&quot;</span><br><span class="line">git init&#x2F;&#x2F;初始化</span><br><span class="line">touch xxx.py&#x2F;xxx.txt&#x2F;xxx.cpp</span><br></pre></td></tr></table></figure></li>
-<li><p>文件的编写以及放入仓库</p>
+<li><p>Git的命令</p>
 <ul>
 <li>直接在源文件之中进行编写<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cat xxx.txt&#x2F;xxx.py &#x2F;&#x2F;查看你所要查看文件的具体内容。</span><br><span class="line">git status &#x2F;&#x2F;查看此时文件的状态</span><br><span class="line">git diff   &#x2F;&#x2F;查看更改之后的文件和上一次更改时候的文件的差别</span><br><span class="line">git add &lt;message&gt;  &#x2F;&#x2F;添加更改之后的文件进入仓库</span><br><span class="line">git commit -m &quot;此时你想定义的操作的名称&quot;  &#x2F;&#x2F;确认提交修改之后的文件或者代码</span><br><span class="line">git log --pretty&#x3D;oneline  &#x2F;&#x2F;查看记录中提交了几次修改，</span><br></pre></td></tr></table></figure></li>
 <li><p>注意在git log命令之后，有可以标识每次修改之后的文件状态的指针，（这个很重要），有了这个指针之后，就可以利用</p>
@@ -241,10 +247,37 @@
 <p><strong>注意！！</strong>，git add仅仅是将文件添加到缓存区(stage)，必须要使用git commit 才能将文件添加到分支里面去。</p>
 </li>
 <li>git status 是查看此时的工作区情况，告诉此时工作区有哪些变化，eg：有哪些文件是新添加进来的，有哪些文件是发生了修改的，同时这些文件都是在工作区，还没有进入到缓存区，当所有的文件都通过<strong>git commit -m “message”</strong>提交到了分支之中时，通过log就可以查看添加的文件的指针，方便在后面对需要重新返回的文件进行reset操作。</li>
+<li>Git管理的是<strong>修改</strong>，所以每次修改之后，要用add把修改添加到缓存区，添加到缓存区之后，才能利用commit添加到仓库里面，简言之，commit就是你<strong>最近一次</strong>add或者commit命令之后的缓存区。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- &lt;file name&gt; &#x2F;&#x2F;撤销修改 ,丢弃工作区的修改</span><br><span class="line">rm &lt;filename&gt;   &#x2F;&#x2F;删除文件</span><br><span class="line">git rm &lt;filename&gt;  &#x2F;&#x2F;确定删除</span><br></pre></td></tr></table></figure></li>
+<li><strong>注意</strong>，每一次你需要在将文件从版本库里面添加或者删除的时候，都需要有commit命令一起使用</li>
+<li>同时，只要add之后，都会添加到版本库里面，只要在版本库里面有的文件，如果误删，都可以用git checkout —<filename> 进行恢复，但是恢复的时候，是没有了最近的修改的。</filename></li>
+</ul>
+</li>
+<li><p>工作区，缓存区</p>
+<ul>
+<li>工作区：edit了你的文件之后还没add之前</li>
+<li>add之后，你的文件就保存在了缓存区，等待进一步的commit</li>
+<li><p>Git管理的是你的修改，你的每一次的修改，都会保存在记录里面，便于你自己回退</p>
+<ul>
+<li><p>场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout — file。</p>
+</li>
+<li><p>场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。</file></p>
+</li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<pre><code>    * 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+* 远程仓库 （与github连接）
+    * 在本地仓库修改并**add和commit**之后，通过
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+    可以把本地master分支的最新修改全部推送到github中，同时，可以通过添加ssh，使得不同的人可以在不同的电脑中像github的仓库之中push文件。
 
+    将github的仓库克隆到本地
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http:&#x2F;&#x2F;github.com&#x2F;yourname&#x2F;仓库名字.git</span><br></pre></td></tr></table></figure>
+* 分支管理
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b name &#x2F;&#x2F;添加新的分支</span><br><span class="line">等同于下面两个命令</span><br><span class="line">git branch name</span><br><span class="line">git checkout name &#x2F;&#x2F; 都会转移到新的分支中，这句话的作用就是转移到你所指定的分支之中。</span><br><span class="line"></span><br><span class="line">git merge name  &#x2F;&#x2F;将分支和master进行合并，，你在分支提交的修改，都不会出现在master之中，所以必须最后对分支进行合并</span><br></pre></td></tr></table></figure>
+</code></pre>
     </div>
 
     
