@@ -20,14 +20,16 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="概述  进程之间的通信  端到端通信实际上是进程之间的通信  运输层提供应用进程之间的逻辑通信  网络层提供的是主机之间的逻辑通信  只有在位于网络边缘的两台主机的协议栈才有运输层，路由器只有下三层         *   两大协议      *   TCP          *   面向连接，可靠的（尽管下面的网络不可靠）          *   电子邮件，远程终端输入，万维网，文件传送">
+<meta property="og:type" content="article">
 <meta property="og:title" content="运输层">
 <meta property="og:url" content="http://yoursite.com/2020/11/07/%E8%BF%90%E8%BE%93%E5%B1%82/index.html">
 <meta property="og:site_name" content="Cornelia">
+<meta property="og:description" content="概述  进程之间的通信  端到端通信实际上是进程之间的通信  运输层提供应用进程之间的逻辑通信  网络层提供的是主机之间的逻辑通信  只有在位于网络边缘的两台主机的协议栈才有运输层，路由器只有下三层         *   两大协议      *   TCP          *   面向连接，可靠的（尽管下面的网络不可靠）          *   电子邮件，远程终端输入，万维网，文件传送">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/11/07/%E8%BF%90%E8%BE%93%E5%B1%82/20201107-1.png">
 <meta property="article:published_time" content="2020-11-07T08:17:48.000Z">
-<meta property="article:modified_time" content="2020-11-07T08:21:04.135Z">
+<meta property="article:modified_time" content="2020-11-08T07:31:13.489Z">
 <meta property="article:author" content="Peter">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -198,10 +200,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-11-07 16:17:48 / 修改时间：16:21:04" itemprop="dateCreated datePublished" datetime="2020-11-07T16:17:48+08:00">2020-11-07</time>
+              <time title="创建时间：2020-11-07 16:17:48" itemprop="dateCreated datePublished" datetime="2020-11-07T16:17:48+08:00">2020-11-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-08 15:31:13" itemprop="dateModified" datetime="2020-11-08T15:31:13+08:00">2020-11-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -231,7 +239,259 @@
 
       
         <img src="/2020/11/07/%E8%BF%90%E8%BE%93%E5%B1%82/20201107-1.png" class title="image1">
+<ul>
+<li><p>概述</p>
+<ul>
+<li><p>进程之间的通信</p>
+<ul>
+<li><p>端到端通信实际上是进程之间的通信</p>
+</li>
+<li><p>运输层提供应用进程之间的逻辑通信</p>
+<ul>
+<li><p>网络层提供的是主机之间的逻辑通信</p>
+</li>
+<li><p>只有在位于网络边缘的两台主机的协议栈才有运输层，路由器只有下三层</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>*   两大协议
 
+    *   TCP
+
+        *   面向连接，可靠的（尽管下面的网络不可靠）
+
+        *   电子邮件，远程终端输入，万维网，文件传送
+
+
+    *   UDP
+
+        *   无连接的，不可靠
+
+        *   名字转换，文件传送（简单的文件传送），路由选择协议，网络管理……
+
+
+    *   运输层的端口
+
+        *   复用和分用
+
+        *   虽然通信的终点是应用进程，只有把所传送的报文交付目的主机的某个合适的目的端口，剩下的工作就交给TCP/UDP来完成。
+
+        *   解决的问题：进程的创建是动态的，通信的一方几乎无法识别对方机器上的进程。
+</code></pre><ul>
+<li><p>用户数据报协议（UDP）</p>
+<ul>
+<li><p>主要特点</p>
+<ul>
+<li><p>无连接</p>
+</li>
+<li><p>尽最大努力交付</p>
+</li>
+<li><p>面向报文</p>
+<ul>
+<li>应用层交给UDP多少报文，UDP就转发多少</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   没有拥塞控制
+
+    *   支持一对一，一对多，多对一，多对多的交互通信
+
+    *   首部开销少
+</code></pre><ul>
+<li><p>传输控制协议TCP</p>
+<ul>
+<li><p>主要特点</p>
+<ul>
+<li><p>面向连接的运输层协议</p>
+<ul>
+<li>虚连接，不是一条真正的物理连接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   每一条TCP连接只有两个端点
+
+    *   可靠交付
+
+    *   全双工通信
+
+    *   面向字节流
+
+
+*   TCP的连接
+
+    *   每一条TCP连接唯一地被通信两端的两个端点所确定
+
+    *   同一个IP地址可以有多个不同的TCP连接，而同一个端口号可以出现在多个不同的TCP连接中
+
+
+*   可靠运输的工作原理（🌟）
+
+    *   停止等待协议
+
+        全双工通信的双方既是发送方也是接收方
+
+        *   无差错情况
+
+        *   有差错情况
+
+        *   确认丢失和确认迟到
+
+            *   丢弃这个重复的分组
+
+            *   向A发送确认
+
+
+        *   信道利用率
+
+
+    *   连续ARQ协议
+
+        *   多个分组，单独确认，累积确认，回退N，滑动窗口协议
+
+        *   对于没有按序到达的分组，要丢弃，所以确认号会是接收到的最后一个按序到达的分组序列加1，表示这个序列之前的都按序到达。
+
+
+
+*   报文段的首部格式
+
+*   TCP可靠运输的实现
+
+    *   以字节为单位的滑动窗口协议
+
+        *   当出现未按序到达的情况
+
+            *   先存下，等待缺少的数据的到达
+
+                *   未按序到达，说明前面的数据有丢失或者滞后，那么确认数据报只能是按序到达的最高序列给出确认
+
+                    比如 30以前已经收到，32，33未按序到达，确认号是31
+
+
+
+        *   发送方的应用程序把字节流写入TCP的发送缓存，接收方的应用进程从TCP的接收缓存中读取字节流。
+
+
+    *   超时重传时间的选择
+
+        *   kam算法的修正
+
+            *   新的rto=2*旧的rto
+
+
+
+    *   选择确认SACK
+</code></pre><ul>
+<li><p>TCP的流量控制（🌟）</p>
+<ul>
+<li><p>利用滑动窗口实现流量控制</p>
+<ul>
+<li><p>所谓流量控制，就是要让发送方的效率别太高，接收方来得及接收</p>
+</li>
+<li><p>接收方每次给出还能接收的窗口的大小，发送方再根据能够接收的大小进行数据的发送</p>
+</li>
+<li><p>TCP的窗口单位是字节，不是报文段</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>*   TCP的传输效率
+
+    *   发送方的糊涂窗口综合征
+
+        *   nagle算法
+
+
+    *   接收方的糊涂窗口综合征
+
+        *   接收方等待一段时间，使得接收缓存有足够空间容纳一个最长报文段
+
+        *   等到接收缓存有一半空闲的空间
+</code></pre><ul>
+<li><p>TCP的拥塞控制（🌟）</p>
+<p>防止过多的数据注入网络</p>
+<ul>
+<li><p>闭环控制和开环控制</p>
+<ul>
+<li><p>开环控制在设计之初就考虑</p>
+</li>
+<li><p>闭环控制：检测拥塞在何时何处发生，将信息传送到可采取行动的地方，调整网络系统的运行</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>*   TCP拥塞控制的方法
+
+    *   慢开始
+
+        *   指数增长到初始设置的ssthresh
+
+        *   出现超时时候要进行慢开始（ssthresh=rwnd/2)
+
+
+    *   拥塞避免
+
+        *   到达ssthresh时，线性增长
+
+
+    *   快重传
+
+        *   收到三个连续的对M2的ack立即重传M3
+
+
+    *   快恢复
+
+        *   收到3个ack之后，ssthresh设置为当前门限制的一半
+</code></pre><ul>
+<li><p>TCP的运输连接管理（🌟）</p>
+<ul>
+<li><p>三个阶段</p>
+<ul>
+<li>连接建立，数据传送，连接释放</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>*   客户-服务器的模式
+
+*   三报文握手建立连接
+
+    *   SYN=1,seq=x（客户）
+
+    *   SYN=1,ACK=1,seq=1,ack=x+1（服务器）
+
+    *   ACK=1,seq=x+1,ack=y+1（客户）
+
+
+*   四报文握手释放连接
+
+    *   客户最后要等待2msl时间之后再释放
+
+    *   FIN=1,seq=u（客户）
+
+    *   ACK=1,seq=v,ack=u+1（服务器）
+
+    *   FIN=1,ACK=1,seq=w,ack=u+1（服务器）
+
+    *   ACK=1,seq=u+1,ack=w+1（客户）
+</code></pre>
     </div>
 
     
@@ -329,7 +589,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -342,7 +602,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -20,14 +20,16 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="域名系统（DNS）  互联网的域名结构  层状树状结构  三级域名.二级域名.顶级域名            *   域名只是逻辑概念      *   域名的分类          *   顶级域名              *   国家顶级域名              *   通用顶级域名              *   基础结构域名           *   二级域名">
+<meta property="og:type" content="article">
 <meta property="og:title" content="应用层">
 <meta property="og:url" content="http://yoursite.com/2020/11/07/%E5%BA%94%E7%94%A8%E5%B1%82/index.html">
 <meta property="og:site_name" content="Cornelia">
+<meta property="og:description" content="域名系统（DNS）  互联网的域名结构  层状树状结构  三级域名.二级域名.顶级域名            *   域名只是逻辑概念      *   域名的分类          *   顶级域名              *   国家顶级域名              *   通用顶级域名              *   基础结构域名           *   二级域名">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2020/11/07/%E5%BA%94%E7%94%A8%E5%B1%82/20201107-2.png">
 <meta property="article:published_time" content="2020-11-07T08:21:31.000Z">
-<meta property="article:modified_time" content="2020-11-07T08:22:40.028Z">
+<meta property="article:modified_time" content="2020-11-08T07:27:54.852Z">
 <meta property="article:author" content="Peter">
 <meta property="article:tag" content="Notes">
 <meta name="twitter:card" content="summary">
@@ -198,10 +200,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-11-07 16:21:31 / 修改时间：16:22:40" itemprop="dateCreated datePublished" datetime="2020-11-07T16:21:31+08:00">2020-11-07</time>
+              <time title="创建时间：2020-11-07 16:21:31" itemprop="dateCreated datePublished" datetime="2020-11-07T16:21:31+08:00">2020-11-07</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-08 15:27:54" itemprop="dateModified" datetime="2020-11-08T15:27:54+08:00">2020-11-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -231,6 +239,296 @@
 
       
         <img src="/2020/11/07/%E5%BA%94%E7%94%A8%E5%B1%82/20201107-2.png" class title="image1">
+<ul>
+<li><p>域名系统（DNS）</p>
+<ul>
+<li><p>互联网的域名结构</p>
+<ul>
+<li><p>层状树状结构</p>
+<ul>
+<li>三级域名.二级域名.顶级域名</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   域名只是逻辑概念
+
+    *   域名的分类
+
+        *   顶级域名
+
+            *   国家顶级域名
+
+            *   通用顶级域名
+
+            *   基础结构域名
+
+
+        *   二级域名
+
+            *   类别域名（7个）
+
+            *   行政区域名（34个）
+
+
+
+    *   域名服务器
+
+        *   跟域名服务器
+
+            *   总共有13个域名，不是只有13台跟域名服务器
+
+            *   在许多情况下，跟域名服务器不直接把待查询的域名直接转换成IP地址，而是告诉本地域名服务器下一步应当找哪一个顶级域名服务器
+
+
+        *   顶级域名服务器
+
+        *   权限域名服务器
+
+        *   本地域名服务器
+
+
+    *   DNS查询
+
+        *   迭代查询
+
+            *   本地域名服务器向根域名服务器的查询
+
+            *   要么给出ip要么告诉本地域名服务器下一步向哪个域名服务器查询
+
+
+        *   递归查询
+
+            *   主机向本地域名服务器的查询
+
+                *   别人代替查询，并给出ip
+</code></pre><ul>
+<li><p>文件传送协议FTP</p>
+<ul>
+<li><p>FTP的基本工作原理</p>
+<ul>
+<li><p>特点</p>
+<ul>
+<li><p>只提供文件传送的一些基本的服务，使用TCP</p>
+</li>
+<li><p>减少或消除在不同操作系统下处理文件的不兼容性</p>
+</li>
+<li><p>使用客户服务器方式</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   工作步骤
+
+        *   步骤
+
+        *   工作时候采用两种独立的连接
+
+            *   TCP控制连接
+
+            *   TCP数据连接
+
+                *   实际用于文件传输
+
+
+
+
+
+*   简单文件传输协议TFTP
+
+    *   只支持文件传输，不支持交互
+
+    *   优点
+
+        *   可用于UDP环境
+
+        *   所占的代码内存较小
+</code></pre><ul>
+<li><p>远程终端协议TELNET</p>
+<ul>
+<li>和FTP的情况相似，服务器中的主进程等待新的连接，并产生从属进程来处理每一个连接</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>万维网（WWW）</p>
+<ul>
+<li><p>特点</p>
+<ul>
+<li><p>分布式的超媒体系统，是超文本系统的扩充</p>
+<ul>
+<li><p>一个超文本由多个信息源连接成</p>
+</li>
+<li><p>超媒体和超文本的区别是文档内容不同</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   客户服务器方式工作
+</code></pre><ul>
+<li><p>统一资源定位符（URL）</p>
+<ul>
+<li><p>格式</p>
+<ul>
+<li>&lt;协议&gt;:// &lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>*   使用HTTP的URL
+
+    *   http的默认端口号是80
+</code></pre><ul>
+<li><p>超文本传送协议HTTP</p>
+<ul>
+<li><p>操作过程</p>
+<ul>
+<li><p>面向事务的应用层协议</p>
+</li>
+<li><p>http报文通常使用tcp连接</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li><p>使用了面向连接的tcp作为运输层协议</p>
+</li>
+<li><p>很</p>
+</li>
+<li><p>http本身是无连接的</p>
+</li>
+<li><p>http是面向事务的客户服务器协议</p>
+</li>
+<li><p>无状态</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   http/1.1解决了1.0版本的非持续连接的问题，采用持续连接的方式
+
+        *   流水线
+
+            *   收到http的响应报文之前就能够接着发送新的请求报文
+
+
+        *   非流水线
+
+            *   客户在收到前一个响应后才能发出下一个请求
+
+
+
+
+*   代理服务器
+
+    *   服务器将最近的一些请求和响应暂时存放在本地磁盘中。（类似cache）
+
+    *   工作过程
+
+
+*   http报文结构
+
+    *   http是面向文本的
+
+
+*   万维网的文档
+
+    *   超文本标记语言html
+
+    *   动态万维网文档
+
+    *   活动的万维网文档
+
+
+*   万维网的信息检索系统
+</code></pre><ul>
+<li><p>电子邮件</p>
+<ul>
+<li><p>主要构件</p>
+<ul>
+<li><p>同户代理</p>
+<ul>
+<li><p>功能</p>
+<ul>
+<li><p>撰写</p>
+</li>
+<li><p>显示</p>
+</li>
+<li><p>处理</p>
+</li>
+<li><p>通信</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>    *   邮件服务
+
+        *   邮件服务器仍然是客户服务器模式，同时充当客户和服务器
+
+
+    *   邮件传送协议（smtp）
+
+        *   用户代理向邮件服务器发送邮件或在邮件服务器之间发送协议
+
+
+    *   邮件读取协议（pop3）
+
+        *   用户代理从邮件服务器读取邮件
+
+
+
+*   简单邮件传送协议
+
+    *   连接建立
+
+    *   邮件传送
+
+    *   连接释放
+
+
+*   邮件读取协议pop3和imap
+
+    *   pop使用客户服务器的工作方式
+
+    *   用户只要从pop中读取了文件，就要把该文件删除
+
+    *   imap和pop的对比
+
+
+*   通用互联网邮件扩充mime
+</code></pre><ul>
+<li><p>动态主机配置协议DHCP</p>
+<ul>
+<li><p>即插即用联网，允许一台计算机加入新的网络和获取ip地址而不用手动参与</p>
+</li>
+<li><p>工作过程</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>简单网络管理协议snmp</li>
+</ul>
+
     </div>
 
     
@@ -328,7 +626,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -341,7 +639,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
